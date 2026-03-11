@@ -308,4 +308,517 @@
       <div class="card-highlights">
         <span class="card-highlight-tag">Hagrid's Motorbike</span>
         <span class="card-highlight-tag">Wizarding World</span>
-        <span class="card-high
+        <span class="card-highlight-tag">VelociCoaster</span>
+        <span class="card-highlight-tag">E.T. Adventure</span>
+        <span class="card-highlight-tag">25 Wand Spells</span>
+      </div>
+      <div class="card-desc">Two parks in one day — start with early access to Hogsmeade and end with dinner at Antojitos in CityWalk.</div>
+      <span class="card-btn">View Day Plan →</span>
+    </div>
+
+    <div class="park-card disney" onclick="showView('disney-view')">
+      <div class="card-day">June 12 · Day 2</div>
+      <span class="card-icon">⭐</span>
+      <div class="card-title">Hollywood Studios</div>
+      <div class="card-sub">Walt Disney World</div>
+      <div class="card-highlights">
+        <span class="card-highlight-tag">Rise of the Resistance</span>
+        <span class="card-highlight-tag">Galaxy's Edge</span>
+        <span class="card-highlight-tag">Tower of Terror</span>
+        <span class="card-highlight-tag">Fantasmic!</span>
+        <span class="card-highlight-tag">Oga's Cantina</span>
+      </div>
+      <div class="card-desc">A full day from Galaxy's Edge at open to Fantasmic! under the stars — with Indiana Jones and Tower of Terror in between.</div>
+      <span class="card-btn">View Day Plan →</span>
+    </div>
+
+    <div class="park-card epic" onclick="showView('epic-view')">
+      <div class="card-day">June 13 · Day 3</div>
+      <span class="card-icon">🌌</span>
+      <div class="card-title">Epic Universe</div>
+      <div class="card-sub">Universal Orlando · Brand New 2025</div>
+      <div class="card-highlights">
+        <span class="card-highlight-tag">Ministry of Magic</span>
+        <span class="card-highlight-tag">Super Nintendo World</span>
+        <span class="card-highlight-tag">Dark Universe</span>
+        <span class="card-highlight-tag">Isle of Berk</span>
+        <span class="card-highlight-tag">Stardust Racers</span>
+      </div>
+      <div class="card-desc">Four fully immersive portal worlds — dragons, monsters, Mario, and 1920s Paris. The newest theme park on Earth.</div>
+      <span class="card-btn">View Day Plan →</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ UNIVERSAL VIEW -->
+<div id="universal-view" class="view universal-view">
+  <div class="itinerary-wrap">
+    <button class="back-btn" onclick="showView('home-view')">← All Parks</button>
+
+    <div class="header">
+      <div class="header-eyebrow">Family Trip · 2026</div>
+      <div class="header-title">Universal Studios &amp;<br>Islands of Adventure</div>
+      <div class="header-sub">The Complete Day Plan</div>
+      <div class="entry-tip">
+        <strong>Entry:</strong> CityWalk → turn <strong>left</strong> to Islands of Adventure → head immediately to <strong>Hogsmeade</strong> (Early Park Admission)<br>
+        Hagrid's ride is the <em>entire reason</em> for arriving early — do not stop until you're in line.
+      </div>
+    </div>
+
+    <div class="legend">
+      <span class="filter-label">Priority Guide:</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#8b1a1a"></span>1 — Must Do</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#b8860b"></span>2 — Try to Do</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#778899"></span>3 — Possibly Do</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#ccbbaa"></span>5 — If Time Allows</span>
+    </div>
+
+    <div class="filter-bar">
+      <span class="filter-label">Show:</span>
+      <button class="filter-btn active" onclick="setFilter(this,'universal-view','all')">All Attractions</button>
+      <button class="filter-btn" onclick="setFilter(this,'universal-view','must')">Must-Do Only</button>
+    </div>
+
+    <div class="park-divider"><span class="park-divider-label">🏰 Islands of Adventure</span></div>
+    <div id="universal-zones-ioa"></div>
+    <div id="universal-spells-hogsmeade"></div>
+    <div id="universal-zones-bridge"></div>
+    <div class="park-divider"><span class="park-divider-label">🎬 Universal Studios Florida</span></div>
+    <div id="universal-zones-us"></div>
+    <div id="universal-spells-diagon"></div>
+    <div id="universal-spells-knockturn"></div>
+    <div class="park-divider"><span class="park-divider-label">🌆 Heading Out — CityWalk</span></div>
+    <div id="universal-zones-cw"></div>
+    <div class="footer-note">Zones are listed in walk-through order · Priority 6 attractions omitted</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ DISNEY VIEW -->
+<div id="disney-view" class="view disney-view">
+  <div class="itinerary-wrap">
+    <button class="back-btn" onclick="showView('home-view')">← All Parks</button>
+
+    <div class="header">
+      <div class="header-eyebrow">Family Trip · 2026</div>
+      <div class="header-title">Hollywood Studios</div>
+      <div class="header-sub">The Complete Day Plan</div>
+      <div class="entry-tip">
+        <strong>Entry:</strong> Turn <strong>left at Echo Lake</strong>, head <strong>straight back to Galaxy's Edge</strong> — Rise of the Resistance is your first priority.<br>
+        Buy the <em>Lightning Lane Single Pass for Rise of the Resistance</em> before or the moment you enter the park.
+      </div>
+    </div>
+
+    <div class="legend">
+      <span class="filter-label">Priority Guide:</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#2a5298"></span>1 — Must Do</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#b8860b"></span>2 — Try to Do</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#778899"></span>3 — Possibly Do</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#ccbbaa"></span>5 — If Time Allows</span>
+    </div>
+
+    <div class="filter-bar">
+      <span class="filter-label">Show:</span>
+      <button class="filter-btn active" onclick="setFilter(this,'disney-view','all')">All Attractions</button>
+      <button class="filter-btn" onclick="setFilter(this,'disney-view','must')">Must-Do Only</button>
+    </div>
+
+    <div class="park-divider"><span class="park-divider-label">🚀 Hollywood Studios</span></div>
+    <div id="disney-zones"></div>
+    <div class="footer-note">Zones listed in walk-through order · LL = Lightning Lane · Priority 6 attractions omitted</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ EPIC VIEW -->
+<div id="epic-view" class="view epic-view">
+  <div class="itinerary-wrap">
+    <button class="back-btn" onclick="showView('home-view')">← All Parks</button>
+
+    <div class="header">
+      <div class="header-eyebrow">Family Trip · 2026</div>
+      <div class="header-title">Epic Universe</div>
+      <div class="header-sub">The Complete Day Plan</div>
+      <div class="entry-tip">
+        <strong>Note:</strong> Epic Universe is 4.5 miles from CityWalk — <em>it is not connected to the other Universal parks.</em> Shuttle service runs between them, but plan travel time.<br>
+        Hotel guests get 1 hour Early Park Admission to Celestial Park, Dark Universe, and Super Nintendo World.
+      </div>
+    </div>
+
+    <div class="legend">
+      <span class="filter-label">Priority Guide:</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#5c2d7a"></span>1 — Must Do</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#b8860b"></span>2 — Try to Do</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#778899"></span>3 — Possibly Do</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#ccbbaa"></span>5 — If Time Allows</span>
+    </div>
+
+    <div class="filter-bar">
+      <span class="filter-label">Show:</span>
+      <button class="filter-btn active" onclick="setFilter(this,'epic-view','all')">All Attractions</button>
+      <button class="filter-btn" onclick="setFilter(this,'epic-view','must')">Must-Do Only</button>
+    </div>
+
+    <div class="park-divider"><span class="park-divider-label">🌌 Epic Universe</span></div>
+    <div id="epic-zones"></div>
+    <div class="footer-note">Zones listed in walk-through order · Priority 6 attractions omitted</div>
+  </div>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────────
+
+const PRIORITY_CONFIG = {
+  universal: { 1:{label:"Must Do",cls:"p1",color:"#8b1a1a"}, 2:{label:"Try to Do",cls:"p2",color:"#b8860b"}, 3:{label:"Possibly Do",cls:"p3",color:"#778899"}, 5:{label:"If Time Allows",cls:"p5",color:"#ccbbaa"} },
+  disney:    { 1:{label:"Must Do",cls:"p1",color:"#2a5298"}, 2:{label:"Try to Do",cls:"p2",color:"#b8860b"}, 3:{label:"Possibly Do",cls:"p3",color:"#778899"}, 5:{label:"If Time Allows",cls:"p5",color:"#ccbbaa"} },
+  epic:      { 1:{label:"Must Do",cls:"p1",color:"#5c2d7a"}, 2:{label:"Try to Do",cls:"p2",color:"#b8860b"}, 3:{label:"Possibly Do",cls:"p3",color:"#778899"}, 5:{label:"If Time Allows",cls:"p5",color:"#ccbbaa"} },
+};
+
+const TYPE_LABELS = { ride:"Ride", show:"Show", water:"Water Ride", poi:"Point of Interest", food:"Food", notes:"Tip" };
+const TYPE_TAGS   = { ride:"type-ride", show:"type-show", water:"type-water", poi:"type-poi", food:"type-food", notes:"type-notes" };
+
+const UNIVERSAL_ZONES = [
+  { id:"ioa-hogsmeade", park:"IoA", name:"Hogsmeade — Islands of Adventure", note:"Enter here first during Early Park Admission — Hagrid's is the #1 priority!", items:[
+    { type:"ride", priority:1, name:"Hagrid's Magical Creatures Motorbike Adventure", height:"48in", note:"⚡ THE reason for Early Park Admission. Walk in, go straight here before the park opens to the public. This ride is never under 3 hrs once crowds arrive." },
+    { type:"ride", priority:1, name:"Harry Potter and the Forbidden Journey", height:"48in" },
+    { type:"ride", priority:1, name:"Flight of the Hippogriff", height:"36in" },
+    { type:"notes", name:"Moaning Myrtle in the Bathrooms", note:"Listen for Moaning Myrtle in the Hogsmeade restrooms — she makes an appearance!" },
+  ]},
+  { id:"ioa-jurassic", park:"IoA", name:"Jurassic Park", items:[
+    { type:"ride", priority:1, name:"Jurassic World VelociCoaster", height:"51in" },
+    { type:"ride", priority:2, name:"Jurassic Park River Adventure", height:"42in", note:"⚠️ Check ahead — may be closed for renovations." },
+  ]},
+  { id:"ioa-skull", park:"IoA", name:"Skull Island", items:[
+    { type:"ride", priority:1, name:"Skull Island: Reign of Kong", height:"36in" },
+  ]},
+  { id:"ioa-toon", park:"IoA", name:"Toon Lagoon", note:"Water rides — plan accordingly (bring a change of clothes or buy ponchos).", items:[
+    { type:"water", name:"Dudley Do-Right's Ripsaw Falls®", height:"44in" },
+    { type:"water", name:"Popeye & Bluto's Bilge-Rat Barges®", height:"42in" },
+  ]},
+  { id:"ioa-seuss", park:"IoA", name:"Seuss Landing", items:[
+    { type:"ride", priority:5, name:"The High in the Sky Seuss Trolley Train Ride!™", height:"36in" },
+    { type:"ride", priority:5, name:"The Cat in the Hat™", height:"36in" },
+  ]},
+  { id:"hogwarts-express", park:"both", name:"Hogwarts Express (connects both parks)", note:"Requires park-to-park ticket. Each direction is a different experience — ride both ways!", items:[
+    { type:"ride", priority:1, name:"Hogwarts Express – King's Cross Station (US → IoA)", note:"Ask the staff at King's Cross about Platform 9¾ before boarding — they'll show you a hidden trick!" },
+    { type:"ride", priority:1, name:"Hogwarts Express – Hogsmeade Station (IoA → US)" },
+  ]},
+  { id:"us-diagon", park:"US", name:"Diagon Alley — Universal Studios", items:[
+    { type:"ride", priority:1, name:"Harry Potter and the Escape from Gringotts", height:"42in" },
+    { type:"show", priority:2, name:"The Tales of Beedle the Bard" },
+    { type:"poi", name:"Knight Bus", note:"Walk to the back of the Knight Bus to peek inside — most guests miss this!" },
+    { type:"poi", name:"London Phone Booth", note:"Dial 62442 (M-A-G-I-C) to hear a message from the Ministry of Magic." },
+    { type:"poi", name:"12 Grimmauld Place", note:"Look for Kreacher the house-elf in the second-floor window of the houses on the opposite end from King's Cross. Then knock on the door of 12 Grimmauld Place." },
+    { type:"notes", name:"Madam Malkin's Magical Mirror", note:"The mirror in Madam Malkin's Robes for All Occasions can talk. Stop and have a conversation!" },
+  ]},
+  { id:"us-newyork", park:"US", name:"New York", items:[
+    { type:"ride", priority:1, name:"Race Through New York Starring Jimmy Fallon", height:"40in" },
+    { type:"ride", priority:2, name:"Revenge of the Mummy", height:"48in" },
+  ]},
+  { id:"us-production", park:"US", name:"Production Central", items:[
+    { type:"ride", priority:1, name:"Illumination's Villain-Con Minion Blast" },
+    { type:"ride", priority:3, name:"Despicable Me Minion Mayhem™", height:"40in" },
+  ]},
+  { id:"us-hollywood", park:"US", name:"Hollywood", items:[
+    { type:"ride", priority:1, name:"E.T. Adventure", height:"34in" },
+  ]},
+  { id:"us-dreamworks", park:"US", name:"DreamWorks Land", items:[
+    { type:"ride", priority:5, name:"Trolls Rollercoaster", height:"36in" },
+  ]},
+  { id:"us-springfield", park:"US", name:"Springfield", items:[
+    { type:"ride", priority:5, name:"The Simpsons Ride™", height:"40in" },
+  ]},
+  { id:"us-worldexpo", park:"US", name:"World Expo", items:[
+    { type:"ride", priority:1, name:"MEN IN BLACK™ Alien Attack", height:"42in" },
+  ]},
+  { id:"citywalk", park:"CW", name:"CityWalk — On the Way Out", note:"End-of-day stops as you exit toward the parking structure.", items:[
+    { type:"poi", name:"Berlin Wall Slab (behind Hard Rock)", note:"A slab of the actual Berlin Wall sits behind the Hard Rock Café. Walk around the right side of the building — past the stairs on your left — to the end of the path. Totally worth it." },
+    { type:"food", name:"Voodoo Doughnut", note:"On the CityWalk side heading toward Universal Studios. Open 8am–midnight — perfect end-of-day treat." },
+    { type:"food", name:"Dinner: Antojitos Authentic Mexican Food", note:"Located right behind Margaritaville. Open 4pm–midnight. 📞 Call ahead from inside the park to snag a reservation so you walk straight in — no waiting after a long day on your feet." },
+  ]},
+];
+
+const SPELLS_HOGSMEADE = [
+  { location:"Zonko's Joke Shop", spell:"Incendio", effect:"Sets off spinning wheels and rockets." },
+  { location:"McHavelock's", spell:"Arresto Momentum", effect:"Stops water from pouring into a cauldron." },
+  { location:"Honeydukes", spell:"Revelio", effect:"Opens a chocolate frog box to reveal the frog." },
+  { location:"Dogweed and Deathcap", spell:"Herbivicus", effect:"Watch the plant in the window — leaves turn green." },
+  { location:"Gladbags Wizardwear", spell:"Ascendio / Descendio", effect:"Raises and lowers a measuring tape on the robe in the window." },
+  { location:"Madam Puddifoot's", spell:"Locomotor Snowman", effect:"Moves the snowman cake topper." },
+  { location:"Dervish and Banges", spell:"Locomotor / Arresto Momentum", effect:"Starts and stops the music box in the window." },
+  { location:"Tomes and Scrolls", spell:"Alohomora", effect:"Opens/Unlocks a copy of Tales of Beedle the Bard." },
+  { location:"Spintwitches", spell:"Wingardium Leviosa", effect:"Causes the Quidditch balls on display to levitate." },
+];
+
+const SPELLS_DIAGON = [
+  { location:"Pilliwinkle's Playthings", spell:"Tarantallegra", effect:"The dancing feet spell causes trolls to dance in the window." },
+  { location:"Flimflam's Lanterns", spell:"Incendio", effect:"Lights the lanterns." },
+  { location:"Umbrella Sign", spell:"Meteolojinx", effect:"Make it rain!" },
+  { location:"Magical Menagerie", spell:"Silencio", effect:"Causes a creature to stop chirping." },
+  { location:"Wiseacre's Wizarding Equipment", spell:"Dark Detectors", effect:"Wave your wand and eyes open up in the window." },
+  { location:"Wiseacre's Wizarding Equipment", spell:"Specialis Revelio", effect:"Reveals an archer on a star map who fires an arrow; his dog retrieves it. Pretty cool!" },
+  { location:"Scribbulus", spell:"Wingardium Leviosa", effect:"Levitates a quill above a parchment." },
+  { location:"Bowman E. Wright Blacksmith", spell:"Reparo", effect:"Cast to repair." },
+  { location:"Bowman E. Wright Blacksmith", spell:"Locomotor Bellows", effect:"Works a bellows to stoke the blacksmith's fire." },
+  { location:"Mermaid Fountain", spell:"Aguamenti", effect:"Creates a stream of water from the fountain." },
+];
+
+const SPELLS_KNOCKTURN = [
+  { location:"Weasley's Wizard Wheezes", spell:"Descendo", effect:"Flushes a plunger down a toilet." },
+  { location:"Chimney Sweep Elf Sign", spell:"Locomotor Chimney Sweep", effect:"Look up for a red chimney sign — the spell makes a little sweep climb the chimney. Easy to miss!" },
+  { location:"Dystal Phaelanges", spell:"Moving Skeleton", effect:"Your body motions are mirrored by the skeleton in the window. One of the most popular!" },
+  { location:"Noggin and Bonce", spell:"Mimblewimble", effect:"Silences the talking heads in the window." },
+  { location:"Tallow and Hemp Toxic Tapers", spell:"Incendio", effect:"Various effects on the bird in the cage." },
+  { location:"Trackleshanks Locksmith", spell:"Alohomora", effect:"Watch out — a gust of wind might give you a scare!" },
+];
+
+const HS_ZONES = [
+  { id:"hs-galaxys-edge-am", park:"DIS", name:"Star Wars: Galaxy's Edge", note:"Enter the park, turn left at Echo Lake, and head straight back. Cast Members stay fully in character — call bathrooms 'refreshers,' water fountains 'hydrators.' Say 'Bright suns!' in the morning and 'Rising moons!' in the evening.", items:[
+    { type:"ride", priority:1, ll:"single", name:"Star Wars: Rise of the Resistance", height:"40in", note:"⚡ Buy a Lightning Lane Single Pass the moment the park opens — routinely sells out by mid-morning." },
+    { type:"ride", priority:1, ll:"multi", name:"Millennium Falcon: Smugglers Run", height:"38in", note:"🎮 SECRET 'CHEWIE MODE': Pilots push the stick all the way to one extreme then hit activate; gunners/engineers hold a white button first then press orange activate. Do this before the cast member checks seatbelts. If everyone nails it, Hondo disappears and Chewbacca takes over the whole ride. Ask your cast member — they love helping with this." },
+    { type:"poi", name:"The Dianoga Water Fountain", note:"Near the Batuu Marketplace restrooms. Press the button and a one-eyed Dianoga — the trash compactor creature from A New Hope — pops up from the pipe and stares at you." },
+    { type:"poi", name:"Dok-Ondar's Den of Antiquities", note:"Worth exploring even if you're not shopping: a taxidermied Wampa on the wall, a Rathtar in carbonite, and K-2SO from Rogue One in a droid cage." },
+  ]},
+  { id:"hs-galaxys-edge-lunch", park:"DIS", name:"Lunch — Galaxy's Edge", items:[
+    { type:"food", name:"Docking Bay 7 Food and Cargo", note:"Best quick-service in the land — the food is genuinely good, not just themed. Mobile order through the Disney app." },
+    { type:"food", name:"Blue or Green Milk (Milk Stand)", note:"Plant-based frozen drinks — blue is coconut-forward, green is citrusy. You have to try at least one." },
+  ]},
+  { id:"hs-toy-story", park:"DIS", name:"Toy Story Land", note:"The whole land is built as if you've been shrunk to toy size — Andy set this up in his backyard. The scale of everything makes a lot more sense through that lens.", items:[
+    { type:"ride", priority:1, name:"Slinky Dog Dash", height:"38in" },
+    { type:"ride", priority:2, name:"Toy Story Mania!", note:"Keep your arm moving even before targets appear — the gun fires faster the more you pull." },
+    { type:"ride", priority:2, name:"Alien Swirling Saucers", height:"32in" },
+  ]},
+  { id:"hs-runaway-railway", park:"DIS", name:"Chinese Theatre — Mickey & Minnie's Runaway Railway", items:[
+    { type:"ride", priority:1, name:"Mickey & Minnie's Runaway Railway", note:"No height requirement. There's a hidden B-plot running the entire ride — keep an eye on Pluto trying to steal a picnic basket. Most guests never notice." },
+  ]},
+  { id:"hs-echo-lake", park:"DIS", name:"Echo Lake", items:[
+    { type:"show", priority:3, name:"Beauty and the Beast – Live on Stage", showtimes:"11:00 AM · 1:00 PM · 2:00 PM · 4:00 PM · 5:00 PM" },
+    { type:"show", priority:3, name:"For the First Time in Forever: A Frozen Sing-Along Celebration", showtimes:"9:30 · 10:30 · 11:30 AM · 12:30 · 1:30 · 2:30 · 3:30 · 4:30 · 5:30 · 6:30 PM", note:"Air-conditioned theater. The hosts are genuinely funny — don't write this off." },
+  ]},
+  { id:"hs-indy-startours", park:"DIS", name:"Echo Lake — Indiana Jones & Star Tours", items:[
+    { type:"show", priority:1, ll:"multi", name:"Indiana Jones™ Epic Stunt Spectacular", showtimes:"10:45 AM · 12:00 PM · 1:15 PM · 3:15 PM · 4:30 PM", note:"Book via Lightning Lane Multi Pass. Want to be a volunteer extra? Sit front and center and be loudly enthusiastic when the casting director comes out — wave, stand up, shout. Must be 18+." },
+    { type:"poi", name:"The Rope Well Outside the Theater", note:"Find the well with the sign 'Warning: Do Not Pull Rope' — the 'Not' is crossed out. Pull it. You'll hear someone trapped at the bottom. Pull multiple times for different responses." },
+    { type:"ride", priority:1, ll:"multi", name:"Star Tours – The Adventures Continue", height:"40in", note:"Book via Lightning Lane Multi Pass. Dozens of randomized destination combos — almost no two rides are identical. Worth riding twice." },
+  ]},
+  { id:"hs-sunset", park:"DIS", name:"Sunset Boulevard — Tower of Terror", items:[
+    { type:"ride", priority:1, name:"The Twilight Zone Tower of Terror™", height:"40in", note:"Slow down in the queue — it's a fully themed 1939 Hollywood hotel frozen in time. The building is 199 feet tall: one foot short of the FAA's aircraft warning light requirement, which they deliberately avoided to preserve the atmosphere." },
+  ]},
+  { id:"hs-muppets", park:"DIS", name:"Grand Avenue — Muppet*Vision 3D", items:[
+    { type:"show", priority:3, name:"Muppet*Vision 3D", note:"Almost always a short wait. In the preshow room, find the security desk with a sign reading 'Back in 5 minutes — key is under the mat.' Lift the mat. There's actually a key embedded in the floor." },
+  ]},
+  { id:"hs-galaxys-edge-dinner", park:"DIS", name:"Dinner — Galaxy's Edge", items:[
+    { type:"food", name:"Oga's Cantina", note:"📞 Make a reservation well in advance — walk-ins are nearly impossible. DJ R-3X is the original Star Tours pilot droid repurposed as the cantina DJ. He glitches mid-song and slips into his old flight announcements before snapping out of it." },
+  ]},
+  { id:"hs-fantasmic", park:"DIS", name:"Fantasmic! — End of Night", note:"Arrive 30–45 minutes early — the amphitheater fills fast.", items:[
+    { type:"show", priority:1, name:"Fantasmic! Nighttime Spectacular", showtimes:"8:30 PM · 10:00 PM", note:"Water screens, fire, Disney characters, and a full dragon sequence. If two shows are running, the second is always less crowded." },
+  ]},
+];
+
+const SPELLS_MINISTRY = [
+  { location:"Les Bijoux de Jacqueline (jewelry shop, right of entrance)", spell:"Lumos", effect:"Your wand tip glows; a Niffler inside the window jingles the shiny baubles it's hoarding." },
+  { location:"Monsieur Sanfins (left of entrance)", spell:"Incendio", effect:"Cast the fire-making spell at the shop window to light something inside." },
+  { location:"Les Lumières Maroquinerie", spell:"Titillando", effect:"The Tickling Charm hits a Niffler in the chandelier — it gets tickled and drops its gold coins." },
+  { location:"Les Instruments Larusso", spell:"Locomotor", effect:"Two-part challenge: activate each instrument in sequence to build up the whole band performing together." },
+  { location:"Bar Moonshine (Pumpkin Juice window)", spell:"Revelio", effect:"A Demiguise gradually appears out of thin air, then slowly fades — only its glowing eyes linger." },
+  { location:"Fontaine de la Rue Malabête (near ride entrance)", spell:"Accio", effect:"Something is pulled into the fountain — one of the most visually satisfying spells in all three parks." },
+  { location:"Chez Cosmé", spell:"Lumos Maxima", effect:"A powerful burst of light illuminates dark corners of the store window with magical brilliance." },
+  { location:"Pharmacie Branchiflore (across from wand shop)", spell:"Revelio", effect:"Concealed objects inside the pharmacy window are magically revealed." },
+  { location:"Le Serpent Volant (across from Bar Moonshine)", spell:"Ventus", effect:"A spiraling gust of wind shoots into the display window. Medium-to-hard motion — worth the effort." },
+  { location:"Les Valises Maroquinerie", spell:"Descendo", effect:"All the suitcases spring open. Race to close them one by one before the timer runs out — if you succeed, the middle case pops open to reveal a Niffler." },
+  { location:"Le Gobelet Noir courtyard portraits", spell:"Various (Incendio, Colovaria, Engorgio…)", effect:"The talking portraits have actual conversations with you and respond differently to each spell. Genuinely interactive — not just a visual effect." },
+  { location:"Cosme Acajor Baguettes Magique (wand shop)", spell:"Exclusive Gen 2 spell", effect:"One spell location is only unlocked with a 2nd Generation wand (the $85 ones). Ask inside the shop — it's the most dramatic effect in the land." },
+];
+
+const EU_ZONES = [
+  { id:"eu-celestial", park:"EU", name:"Celestial Park — The Hub", note:"Celestial Park is the heart of the park — a grand open plaza that connects all four portal worlds. Each portal is architecturally designed to hint at the land it leads into. The park's two resident deities, Helios (sun) and Luna (moon), frame the central gardens — at night the whole park syncs together in a light and fire show. Don't skip the closing night show at the lake.", items:[
+    { type:"ride", priority:1, name:"Stardust Racers", height:"48in", note:"The coaster trains have flux-capacitor-style details on the backs — a quiet Back to the Future tribute from the studio that made it. Smooth, fast, and the best views of the entire park." },
+  ]},
+  { id:"eu-ministry", park:"EU", name:"Wizarding World — Ministry of Magic™", note:"You're stepping into 1920s Paris. As you pass through the archway, watch the wall posters shift — on the Muggle side they're normal ads; on the magical side they warn about Grindelwald and advertise frog choir auditions. Pull out a translation app for the French signage — there's a lot going on that English speakers miss.", items:[
+    { type:"ride", priority:1, name:"Harry Potter and the Battle at the Ministry™", height:"40in", note:"⚠️ The most technically ambitious ride in the park — and the most likely to experience downtime. If it's down when you arrive, grab a return time or check back. Worth the wait: it features the Floo Network as a ride mechanism and is unlike anything in the other Wizarding World parks." },
+    { type:"show", priority:1, name:"Le Cirque Arcanus™", note:"A Fantastic Beasts-themed live show with genuine spectacle — aerial performers, magical creatures, and effects that land better than expected. Check the schedule and plan around it." },
+    { type:"food", name:"Le Gobelet Noir", note:"Nicolas Flamel lives above the tavern — look for Deathly Hallows symbols and the Three Brothers puppets tucked into the décor. In the courtyard, don't miss the talking portraits — they respond to spells and have actual conversations with you." },
+  ]},
+  { id:"eu-nintendo", park:"EU", name:"Super Nintendo World™", note:"Buy a Power-Up Band before you go in (or grab one inside — they're the Mario watch-style wristbands). It turns the entire land into an interactive game: collect coins by punching question blocks, unlock mini-challenges, and work toward battling Bowser Jr. in a secret area only accessible after you've collected three keys hidden around the land.", items:[
+    { type:"ride", priority:1, name:"Mario Kart™: Bowser's Challenge", height:"40in", note:"The AR helmet they give you is your weapon controller — wherever you aim your head is where you shoot. Focus on aiming, not just watching the screen. The team with the most coins and shell hits wins." },
+    { type:"ride", priority:1, name:"Mine-Cart Madness™", height:"40in", note:"Donkey Kong Country-themed coaster with genuine surprises. ⚠️ Still relatively new and prone to downtime — ride it early in the day." },
+    { type:"poi", name:"Power-Up Band — Bowser Jr. Battle", note:"After collecting all three keys from the mini-challenges around the land, you unlock access to Bowser Jr.'s secret lair — a bonus mini-ride experience only available to Power-Up Band holders who've completed the hunt. Worth it." },
+    { type:"notes", name:"Pikmin Hidden Around the Land", note:"Over a dozen Pikmin are tucked around Super Nintendo World — in bushes, corners, rafters. Keep an eye out." },
+    { type:"ride", priority:3, name:"Funky's Fly 'n' Buy" },
+  ]},
+  { id:"eu-dark-universe", park:"EU", name:"Dark Universe — Darkmoor Village", note:"The architecture draws deliberately from Universal's black-and-white monster film era. Look at the gravestones — classic Universal Monsters are carved into them. At various times a roaming violinist wanders the streets playing haunting melodies and sharing lore about the village's monsters. Pay attention: they sometimes drop details you won't find anywhere else.", items:[
+    { type:"ride", priority:1, name:"Monsters Unchained: The Frankenstein Experiment", height:"48in", note:"The marquee ride of Dark Universe — a dark ride that escalates quickly. Ride it before the crowds build." },
+    { type:"ride", priority:1, name:"Curse of the Werewolf", height:"40in" },
+  ]},
+  { id:"eu-berk", park:"EU", name:"How to Train Your Dragon — Isle of Berk", note:"Dragons are everywhere — perched on rooftops, tucked into rocky crags, and roaming the land as live performers. Look for hidden dragon nests in the cliffs. This land is more about immersion than Easter eggs — slow down and look up.", items:[
+    { type:"show", priority:2, name:"The Untrainable Dragon", note:"A stage production with impressive live dragon effects. Worth timing your visit around it." },
+    { type:"water", priority:3, name:"Fyre Drill", note:"Viking-themed water battle ride. You will get wet." },
+    { type:"ride", priority:3, name:"Dragon Racer's Rally", height:"48in" },
+    { type:"ride", priority:5, name:"Hiccup's Wing Gliders", height:"40in", note:"⚠️ The most unreliable attraction in the park during its first year — check wait times before committing to the queue." },
+  ]},
+];
+
+// ── RENDERING ─────────────────────────────────────────────────────────────────
+
+function priorityClass(p) {
+  if (!p) return 'priority-other';
+  return 'priority-' + p;
+}
+
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function renderAttraction(item, parkType) {
+  const typeLabel = TYPE_LABELS[item.type] || item.type;
+  const typeTag   = TYPE_TAGS[item.type] || '';
+  const p = item.priority;
+  const cfg = PRIORITY_CONFIG[parkType];
+  const pc = p && cfg[p];
+  const noteClass = item.ll ? 'attr-note ll-note' : 'attr-note';
+
+  let meta = `<span class="tag ${typeTag}">${typeLabel}</span>`;
+  if (pc) meta += `<span class="priority-pill ${pc.cls}">${pc.label}</span>`;
+  if (item.ll === 'single') meta += `<span class="tag type-ll-single">⚡ LL Single Pass</span>`;
+  if (item.ll === 'multi')  meta += `<span class="tag type-ll-multi">🎟 LL Multi Pass</span>`;
+  if (item.height && item.height !== 'none') meta += `<span class="tag height">↑ ${escHtml(item.height)} min height</span>`;
+  if (item.showtimes) meta += `<span class="tag showtime">🕐 ${escHtml(item.showtimes)}</span>`;
+
+  const note = item.note ? `<div class="${noteClass}">${escHtml(item.note)}</div>` : '';
+
+  return `
+    <div class="attraction ${priorityClass(p)}" data-priority="${p || 0}">
+      <div class="attr-rank">${p || '—'}</div>
+      <div class="attr-body">
+        <div class="attr-name">${escHtml(item.name)}</div>
+        <div class="attr-meta">${meta}</div>
+        ${note}
+      </div>
+    </div>`;
+}
+
+function renderZone(zone, parkType, noteClass) {
+  const badgeMap = { IoA:'ioa', US:'us', both:'ioa', DIS:'dis', EU:'eu', CW:'cw' };
+  const labelMap = { IoA:'IoA', US:'US', both:'IoA + US', CW:'CityWalk', DIS:'HS', EU:'EU' };
+  const badge = badgeMap[zone.park] || 'cw';
+  const label = labelMap[zone.park] || zone.park;
+  const zoneNote = zone.note ? `<div class="zone-note ${noteClass}">${escHtml(zone.note)}</div>` : '';
+  const items = zone.items.map(i => renderAttraction(i, parkType)).join('');
+
+  return `
+    <div class="zone" id="zone-${zone.id}">
+      <div class="zone-header" onclick="toggleZone('zone-${zone.id}')">
+        <span class="zone-badge ${badge}">${label}</span>
+        <span class="zone-name">${escHtml(zone.name)}</span>
+        <span class="zone-toggle open" id="toggle-${zone.id}">▶</span>
+      </div>
+      <div class="zone-body" id="body-${zone.id}">
+        ${zoneNote}
+        ${items}
+      </div>
+    </div>`;
+}
+
+function renderSpells(spells, title, containerId) {
+  const id = 'spells-' + containerId;
+  const rows = spells.map(s => `
+    <div class="spell-row">
+      <div class="spell-location">${escHtml(s.location)}</div>
+      <span class="spell-name">${escHtml(s.spell)}</span> — ${escHtml(s.effect)}
+    </div>`).join('');
+
+  return `
+    <div class="spells-block">
+      <button class="spells-toggle" onclick="toggleSpells('${id}', this)">
+        <span>✦ Wand Spells: ${escHtml(title)}</span>
+        <span>▼ Show all ${spells.length} spells</span>
+      </button>
+      <div class="spell-rows" id="${id}">${rows}</div>
+    </div>`;
+}
+
+function buildUniversal() {
+  const ioa    = UNIVERSAL_ZONES.filter(z => z.park === 'IoA');
+  const bridge = UNIVERSAL_ZONES.filter(z => z.park === 'both');
+  const us     = UNIVERSAL_ZONES.filter(z => z.park === 'US');
+  const cw     = UNIVERSAL_ZONES.filter(z => z.park === 'CW');
+
+  document.getElementById('universal-zones-ioa').innerHTML    = ioa.map(z => renderZone(z,'universal','')).join('');
+  document.getElementById('universal-zones-bridge').innerHTML = bridge.map(z => renderZone(z,'universal','')).join('');
+  document.getElementById('universal-zones-us').innerHTML     = us.map(z => renderZone(z,'universal','')).join('');
+  document.getElementById('universal-zones-cw').innerHTML     = cw.map(z => renderZone(z,'universal','')).join('');
+  document.getElementById('universal-spells-hogsmeade').innerHTML = renderSpells(SPELLS_HOGSMEADE, 'Hogsmeade (IoA)', 'hogsmeade');
+  document.getElementById('universal-spells-diagon').innerHTML    = renderSpells(SPELLS_DIAGON, 'Diagon Alley (US)', 'diagon');
+  document.getElementById('universal-spells-knockturn').innerHTML = renderSpells(SPELLS_KNOCKTURN, 'Knockturn Alley (US)', 'knockturn');
+}
+
+function buildDisney() {
+  document.getElementById('disney-zones').innerHTML = HS_ZONES.map(z => renderZone(z,'disney','disney-note')).join('');
+}
+
+function buildEpic() {
+  let html = '';
+  EU_ZONES.forEach(z => {
+    html += renderZone(z, 'epic', 'epic-note');
+    if (z.id === 'eu-ministry') {
+      html += renderSpells(SPELLS_MINISTRY, 'Ministry of Magic — Place Cachée', 'ministry');
+    }
+  });
+  document.getElementById('epic-zones').innerHTML = html;
+}
+
+// ── INTERACTION ───────────────────────────────────────────────────────────────
+
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  const el = document.getElementById(id);
+  el.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function toggleZone(zoneId) {
+  const body   = document.getElementById('body-' + zoneId.replace('zone-',''));
+  const toggle = document.getElementById('toggle-' + zoneId.replace('zone-',''));
+  const hidden = body.classList.toggle('hidden');
+  toggle.classList.toggle('open', !hidden);
+}
+
+function toggleSpells(id, btn) {
+  const rows = document.getElementById(id);
+  const open = rows.classList.toggle('open');
+  const count = rows.querySelectorAll('.spell-row').length;
+  btn.querySelector('span:last-child').textContent = open ? '▲ Hide' : '▼ Show all ' + count + ' spells';
+}
+
+function setFilter(btn, viewId, mode) {
+  const view = document.getElementById(viewId);
+  view.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  view.querySelectorAll('.attraction').forEach(el => {
+    const p = parseInt(el.dataset.priority);
+    if (mode === 'must') {
+      el.style.display = (p === 1) ? '' : 'none';
+    } else {
+      el.style.display = '';
+    }
+  });
+
+  // Hide zones that have no visible attractions
+  view.querySelectorAll('.zone').forEach(zone => {
+    const body = zone.querySelector('.zone-body');
+    if (!body) return;
+    const visible = [...body.querySelectorAll('.attraction')].some(a => a.style.display !== 'none');
+    zone.style.display = visible ? '' : 'none';
+  });
+
+  // Hide/show spell accordions when filtering
+  view.querySelectorAll('.spells-block').forEach(sb => {
+    sb.style.display = mode === 'must' ? 'none' : '';
+  });
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+buildUniversal();
+buildDisney();
+buildEpic();
+</script>
+</body>
+</html>
