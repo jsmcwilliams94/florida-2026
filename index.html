@@ -9,170 +9,100 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --parchment: #f5edd6;
-      --parchment-dark: #e8d9b5;
-      --ink: #1e1a10;
-      --ink-light: #3d3520;
-      --gold: #b8860b;
-      --gold-light: #d4a017;
-      --crimson: #8b1a1a;
-      --forest: #1a3d2b;
-      --forest-light: #2d5a3f;
-      --slate: #4a5568;
-      --disney-blue: #1a3a6b;
-      --disney-blue-light: #2a5298;
-      --disney-gold: #c9a84c;
+      --parchment: #f5edd6; --parchment-dark: #e8d9b5; --ink: #1e1a10; --ink-light: #3d3520;
+      --gold: #b8860b; --gold-light: #d4a017; --crimson: #8b1a1a; --forest: #1a3d2b;
+      --forest-light: #2d5a3f; --slate: #4a5568; --disney-blue: #1a3a6b;
+      --disney-blue-light: #2a5298; --disney-gold: #c9a84c;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Crimson Pro', Georgia, serif; background: var(--parchment); color: var(--ink); }
 
-    body {
-      font-family: 'Crimson Pro', Georgia, serif;
-      background: var(--parchment);
-      color: var(--ink);
-      min-height: 100vh;
-    }
+    /* PAGE HEADER */
+    .page-header { text-align: center; padding: 56px 24px 48px; position: relative; }
+    .page-header::before { content: ''; position: fixed; inset: 0; background: radial-gradient(ellipse at 15% 20%, rgba(184,134,11,0.09) 0%, transparent 55%), radial-gradient(ellipse at 85% 80%, rgba(26,58,107,0.08) 0%, transparent 55%), radial-gradient(ellipse at 50% 50%, rgba(26,61,43,0.05) 0%, transparent 70%); pointer-events: none; z-index: 0; }
+    .page-header > * { position: relative; z-index: 1; }
+    .home-eyebrow { font-family: 'Crimson Pro', serif; font-style: italic; font-size: 16px; color: var(--gold); letter-spacing: 2.5px; margin-bottom: 10px; }
+    .home-title   { font-family: 'Cinzel', serif; font-size: clamp(32px, 7vw, 58px); font-weight: 700; color: var(--ink); line-height: 1.1; letter-spacing: 1px; margin-bottom: 6px; }
+    .home-subtitle{ font-family: 'Cinzel', serif; font-size: clamp(11px, 2vw, 14px); letter-spacing: 4px; color: var(--gold); text-transform: uppercase; }
+    .home-divider { width: 120px; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); margin: 32px auto 0; }
 
-    /* ── VIEWS ── */
-    .view { display: none; }
-    .view.active { display: block; }
-    #home-view { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 40px 24px; position: relative; overflow: hidden; }
-    #home-view.active { display: flex; }
+    /* ACCORDION PANELS */
+    .panels-wrap { max-width: 900px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 16px; }
+    .panel { border-radius: 4px; overflow: hidden; border: 1px solid transparent; }
+    .panel-header { display: flex; align-items: center; gap: 20px; padding: 28px 32px; cursor: pointer; user-select: none; position: relative; overflow: hidden; transition: opacity 0.15s; }
+    .panel-header::before { content: ''; position: absolute; inset: 0; opacity: 0.04; background-image: repeating-linear-gradient(45deg, currentColor 0px, currentColor 1px, transparent 1px, transparent 12px); }
+    .panel-header:hover { opacity: 0.88; }
+    .panel.universal .panel-header { background: linear-gradient(135deg, #1e2a1a 0%, #0f1a0e 100%); }
+    .panel.disney    .panel-header { background: linear-gradient(135deg, #0f1d40 0%, #080f22 100%); }
+    .panel.epic      .panel-header { background: linear-gradient(135deg, #1a0a2e 0%, #0d0618 100%); }
+    .panel.universal { border-color: rgba(184,134,11,0.3); }
+    .panel.disney    { border-color: rgba(201,168,76,0.3); }
+    .panel.epic      { border-color: rgba(168,130,255,0.3); }
+    .panel-icon { font-size: 36px; line-height: 1; flex-shrink: 0; position: relative; }
+    .panel-meta { flex: 1; position: relative; }
+    .panel-day { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+    .panel.universal .panel-day { color: rgba(168,213,181,0.7); }
+    .panel.disney    .panel-day { color: rgba(201,168,76,0.7); }
+    .panel.epic      .panel-day { color: rgba(168,130,255,0.7); }
+    .panel-title { font-family: 'Cinzel', serif; font-size: clamp(16px, 3vw, 22px); font-weight: 700; line-height: 1.2; margin-bottom: 4px; }
+    .panel.universal .panel-title { color: #d4e8dc; }
+    .panel.disney    .panel-title { color: #c8d8ff; }
+    .panel.epic      .panel-title { color: #ddd0ff; }
+    .panel-sub { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
+    .panel.universal .panel-sub { color: rgba(184,134,11,0.8); }
+    .panel.disney    .panel-sub { color: rgba(201,168,76,0.8); }
+    .panel.epic      .panel-sub { color: rgba(200,168,255,0.8); }
+    .panel-highlights { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+    .panel-tag { font-family: 'Crimson Pro', serif; font-size: 12px; padding: 2px 9px; border-radius: 2px; }
+    .panel.universal .panel-tag { background: rgba(168,213,181,0.1); color: #a8d5b5; border: 1px solid rgba(168,213,181,0.2); }
+    .panel.disney    .panel-tag { background: rgba(201,168,76,0.1); color: var(--disney-gold); border: 1px solid rgba(201,168,76,0.2); }
+    .panel.epic      .panel-tag { background: rgba(168,130,255,0.1); color: #c4a8ff; border: 1px solid rgba(168,130,255,0.25); }
+    .panel-chevron { position: relative; flex-shrink: 0; font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 1.5px; padding: 8px 18px; border-radius: 2px; border: 1px solid; white-space: nowrap; transition: all 0.15s; }
+    .panel.universal .panel-chevron { color: #a8d5b5; border-color: rgba(168,213,181,0.35); }
+    .panel.disney    .panel-chevron { color: #c8d8ff; border-color: rgba(200,216,255,0.35); }
+    .panel.epic      .panel-chevron { color: #c4a8ff; border-color: rgba(196,168,255,0.35); }
+    .panel.open .panel-chevron { background: rgba(255,255,255,0.08); }
+    .panel-body { display: none; background: var(--parchment); border-top: 2px solid; }
+    .panel.universal .panel-body { border-top-color: rgba(184,134,11,0.4); }
+    .panel.disney    .panel-body { border-top-color: rgba(42,82,152,0.4); }
+    .panel.epic      .panel-body { border-top-color: rgba(92,45,122,0.4); }
+    .panel.open .panel-body { display: block; }
 
-    #home-view::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at 15% 20%, rgba(184,134,11,0.09) 0%, transparent 55%),
-        radial-gradient(ellipse at 85% 80%, rgba(26,58,107,0.08) 0%, transparent 55%),
-        radial-gradient(ellipse at 50% 50%, rgba(26,61,43,0.05) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    /* ── HOME ── */
-    .home-eyebrow { font-family: 'Crimson Pro', serif; font-style: italic; font-size: 16px; color: var(--gold); letter-spacing: 2.5px; margin-bottom: 10px; text-align: center; }
-    .home-title { font-family: 'Cinzel', serif; font-size: clamp(32px, 7vw, 58px); font-weight: 700; color: var(--ink); text-align: center; line-height: 1.1; letter-spacing: 1px; margin-bottom: 6px; }
-    .home-subtitle { font-family: 'Cinzel', serif; font-size: clamp(11px, 2vw, 14px); letter-spacing: 4px; color: var(--gold); text-transform: uppercase; text-align: center; margin-bottom: 56px; }
-    .home-divider { width: 120px; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); margin: 0 auto 56px; }
-
-    .park-cards { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; width: 100%; max-width: 960px; }
-
-    .park-card {
-      flex: 1 1 280px; max-width: 320px; border-radius: 4px; padding: 36px 32px;
-      cursor: pointer; position: relative; overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s; border: 1px solid transparent;
-    }
-    .park-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.14); }
-    .park-card::before {
-      content: ''; position: absolute; inset: 0; opacity: 0.04;
-      background-image: repeating-linear-gradient(45deg, currentColor 0px, currentColor 1px, transparent 1px, transparent 12px);
-    }
-
-    .park-card.universal { background: linear-gradient(145deg, #1e2a1a 0%, #0f1a0e 100%); border-color: rgba(184,134,11,0.3); }
-    .park-card.disney    { background: linear-gradient(145deg, #0f1d40 0%, #080f22 100%); border-color: rgba(201,168,76,0.3); }
-    .park-card.epic      { background: linear-gradient(145deg, #1a0a2e 0%, #0d0618 100%); border-color: rgba(168,130,255,0.3); }
-
-    .card-day { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; }
-    .park-card.universal .card-day { color: rgba(168,213,181,0.7); }
-    .park-card.disney .card-day    { color: rgba(201,168,76,0.7); }
-    .park-card.epic .card-day      { color: rgba(168,130,255,0.7); }
-
-    .card-icon { font-size: 44px; margin-bottom: 14px; display: block; line-height: 1; }
-
-    .card-title { font-family: 'Cinzel', serif; font-size: clamp(17px, 3vw, 22px); font-weight: 700; line-height: 1.2; margin-bottom: 8px; }
-    .park-card.universal .card-title { color: #d4e8dc; }
-    .park-card.disney .card-title    { color: #c8d8ff; }
-    .park-card.epic .card-title      { color: #ddd0ff; }
-
-    .card-sub { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 18px; }
-    .park-card.universal .card-sub { color: rgba(184,134,11,0.8); }
-    .park-card.disney .card-sub    { color: rgba(201,168,76,0.8); }
-    .park-card.epic .card-sub      { color: rgba(200,168,255,0.8); }
-
-    .card-highlights { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
-    .card-highlight-tag { font-family: 'Crimson Pro', serif; font-size: 12px; padding: 3px 10px; border-radius: 2px; }
-    .park-card.universal .card-highlight-tag { background: rgba(168,213,181,0.1); color: #a8d5b5; border: 1px solid rgba(168,213,181,0.2); }
-    .park-card.disney .card-highlight-tag    { background: rgba(201,168,76,0.1); color: var(--disney-gold); border: 1px solid rgba(201,168,76,0.2); }
-    .park-card.epic .card-highlight-tag      { background: rgba(168,130,255,0.1); color: #c4a8ff; border: 1px solid rgba(168,130,255,0.25); }
-
-    .card-desc { font-family: 'Crimson Pro', serif; font-size: 14px; line-height: 1.6; font-style: italic; margin-bottom: 24px; }
-    .park-card.universal .card-desc { color: rgba(212,232,220,0.7); }
-    .park-card.disney .card-desc    { color: rgba(200,216,255,0.7); }
-    .park-card.epic .card-desc      { color: rgba(210,190,255,0.65); }
-
-    .card-btn { display: inline-block; font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 9px 22px; border-radius: 2px; border: 1px solid; transition: all 0.15s; }
-    .park-card.universal .card-btn { color: #a8d5b5; border-color: rgba(168,213,181,0.4); }
-    .park-card.universal:hover .card-btn { background: rgba(168,213,181,0.12); }
-    .park-card.disney .card-btn { color: #c8d8ff; border-color: rgba(200,216,255,0.4); }
-    .park-card.disney:hover .card-btn { background: rgba(200,216,255,0.1); }
-    .park-card.epic .card-btn { color: #c4a8ff; border-color: rgba(196,168,255,0.4); }
-    .park-card.epic:hover .card-btn { background: rgba(196,168,255,0.1); }
-
-    /* ── ITINERARY CHROME ── */
-    .itinerary-wrap { max-width: 860px; margin: 0 auto; padding: 32px 20px 60px; position: relative; }
-
-    .back-btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
-      border: 1px solid; padding: 7px 16px; border-radius: 2px; cursor: pointer;
-      background: transparent; margin-bottom: 32px; transition: all 0.15s;
-    }
-
-    .universal-view .back-btn { color: var(--forest); border-color: rgba(26,61,43,0.3); }
-    .universal-view .back-btn:hover { background: rgba(26,61,43,0.06); }
-    .disney-view .back-btn { color: var(--disney-blue); border-color: rgba(26,58,107,0.3); }
-    .disney-view .back-btn:hover { background: rgba(26,58,107,0.06); }
-    .epic-view .back-btn { color: #5c2d7a; border-color: rgba(92,45,122,0.35); }
-    .epic-view .back-btn:hover { background: rgba(92,45,122,0.07); }
-
-    .header { text-align: center; padding: 32px 20px 28px; position: relative; margin-bottom: 36px; }
+    /* ITINERARY CONTENT */
+    .itinerary-wrap { max-width: 860px; margin: 0 auto; padding: 36px 28px 48px; }
+    .header { text-align: center; padding: 0 20px 28px; position: relative; margin-bottom: 36px; }
     .header::before { content: ''; display: block; height: 2px; margin-bottom: 28px; }
     .universal-view .header::before { background: var(--gold); }
-    .disney-view .header::before    { background: var(--disney-blue); }
-    .epic-view .header::before      { background: #5c2d7a; }
-
-    .header::after {
-      content: '✦ ✦ ✦'; position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%);
-      background: var(--parchment); padding: 0 16px; font-size: 14px; letter-spacing: 8px;
-    }
+    .disney-view    .header::before { background: var(--disney-blue); }
+    .epic-view      .header::before { background: #5c2d7a; }
+    .header::after { content: '\2756 \2756 \2756'; position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); background: var(--parchment); padding: 0 16px; font-size: 14px; letter-spacing: 8px; }
     .universal-view .header::after { color: var(--gold); }
-    .disney-view .header::after    { color: var(--disney-blue); }
-    .epic-view .header::after      { color: #5c2d7a; }
-
+    .disney-view    .header::after { color: var(--disney-blue); }
+    .epic-view      .header::after { color: #5c2d7a; }
     .header-eyebrow { font-family: 'Crimson Pro', serif; font-style: italic; font-size: 15px; letter-spacing: 2px; margin-bottom: 10px; }
     .universal-view .header-eyebrow { color: var(--gold); }
-    .disney-view .header-eyebrow    { color: var(--disney-blue-light); }
-    .epic-view .header-eyebrow      { color: #7c3aed; }
-
-    .header-title { font-family: 'Cinzel', serif; font-size: clamp(24px, 5vw, 38px); font-weight: 700; color: var(--ink); line-height: 1.15; letter-spacing: 1px; margin-bottom: 6px; }
-
-    .header-sub { font-family: 'Cinzel', serif; font-size: clamp(11px, 2.5vw, 14px); letter-spacing: 3px; font-weight: 400; text-transform: uppercase; margin-bottom: 16px; }
+    .disney-view    .header-eyebrow { color: var(--disney-blue-light); }
+    .epic-view      .header-eyebrow { color: #7c3aed; }
+    .header-title { font-family: 'Cinzel', serif; font-size: clamp(22px, 4vw, 34px); font-weight: 700; color: var(--ink); line-height: 1.15; letter-spacing: 1px; margin-bottom: 6px; }
+    .header-sub { font-family: 'Cinzel', serif; font-size: clamp(11px, 2vw, 13px); letter-spacing: 3px; font-weight: 400; text-transform: uppercase; margin-bottom: 16px; }
     .universal-view .header-sub { color: var(--gold); }
-    .disney-view .header-sub    { color: var(--disney-blue-light); }
-    .epic-view .header-sub      { color: #7c3aed; }
-
+    .disney-view    .header-sub { color: var(--disney-blue-light); }
+    .epic-view      .header-sub { color: #7c3aed; }
     .entry-tip { display: inline-block; font-family: 'Crimson Pro', serif; font-size: 15px; font-style: italic; padding: 10px 22px; border-radius: 2px; margin-top: 8px; line-height: 1.55; }
     .entry-tip strong { font-style: normal; font-weight: 600; }
     .universal-view .entry-tip { background: var(--forest); color: #d4e8dc; }
     .universal-view .entry-tip strong { color: #7fc99a; }
-    .disney-view .entry-tip { background: var(--disney-blue); color: #c8d8ff; }
-    .disney-view .entry-tip strong { color: #90b8ff; }
-    .epic-view .entry-tip { background: #1a0a2e; color: #d8c8ff; }
-    .epic-view .entry-tip strong { color: #b89aff; }
-
-    /* Legend */
+    .disney-view    .entry-tip { background: var(--disney-blue); color: #c8d8ff; }
+    .disney-view    .entry-tip strong { color: #90b8ff; }
+    .epic-view      .entry-tip { background: #1a0a2e; color: #d8c8ff; }
+    .epic-view      .entry-tip strong { color: #b89aff; }
     .legend { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 36px; font-size: 13px; }
     .legend-item { display: flex; align-items: center; gap: 6px; font-family: 'Crimson Pro', serif; color: var(--ink-light); }
     .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
     .filter-label { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 1.5px; color: var(--slate); text-transform: uppercase; margin-right: 4px; }
-
-    /* Filter bar */
     .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; align-items: center; }
     .filter-btn { font-family: 'Cinzel', serif; font-size: 11px; padding: 5px 14px; border-radius: 2px; border: 1px solid var(--parchment-dark); background: transparent; color: var(--ink-light); cursor: pointer; letter-spacing: 0.5px; transition: all 0.15s; }
     .filter-btn:hover, .filter-btn.active { background: var(--ink); color: var(--parchment); border-color: var(--ink); }
-
-    /* Zone */
     .zone { margin-bottom: 36px; }
     .zone-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--parchment-dark); cursor: pointer; user-select: none; }
     .zone-badge { font-family: 'Cinzel', serif; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 9px; border-radius: 2px; flex-shrink: 0; }
@@ -184,14 +114,10 @@
     .zone-name { font-family: 'Cinzel', serif; font-size: clamp(14px, 2.5vw, 17px); font-weight: 600; color: var(--ink); flex: 1; }
     .zone-toggle { font-size: 12px; color: var(--gold); transition: transform 0.2s; }
     .zone-toggle.open { transform: rotate(90deg); }
-    .zone-body { }
     .zone-body.hidden { display: none; }
-
     .zone-note { margin-bottom: 10px; padding: 8px 12px; background: rgba(26,61,43,0.07); border-left: 3px solid var(--forest-light); font-size: 14px; font-style: italic; color: var(--forest); font-family: 'Crimson Pro', serif; line-height: 1.5; }
     .zone-note.disney-note { background: rgba(26,58,107,0.07); border-left-color: var(--disney-blue-light); color: var(--disney-blue); }
     .zone-note.epic-note   { background: rgba(92,45,122,0.07); border-left-color: #7c3aed; color: #4a1d7a; }
-
-    /* Attractions */
     .attraction { display: flex; gap: 14px; padding: 13px 16px; margin-bottom: 7px; border-radius: 3px; border-left: 3px solid transparent; background: rgba(255,255,255,0.45); transition: background 0.15s; }
     .attraction:hover { background: rgba(255,255,255,0.72); }
     .attraction.priority-1 { border-left-color: var(--crimson); }
@@ -200,13 +126,11 @@
     .attraction.priority-5 { border-left-color: var(--parchment-dark); opacity: 0.75; }
     .attraction.priority-other { border-left-color: var(--gold-light); }
     .disney-view .attraction.priority-1 { border-left-color: var(--disney-blue-light); }
-    .epic-view .attraction.priority-1   { border-left-color: #7c3aed; }
-
+    .epic-view   .attraction.priority-1 { border-left-color: #7c3aed; }
     .attr-rank { font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700; width: 22px; flex-shrink: 0; color: var(--slate); padding-top: 2px; text-align: center; }
     .attr-body { flex: 1; }
     .attr-name { font-family: 'Crimson Pro', serif; font-weight: 600; font-size: 16px; color: var(--ink); line-height: 1.3; }
     .attr-meta { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 5px; align-items: center; }
-
     .tag { font-family: 'Crimson Pro', serif; font-size: 11.5px; padding: 1.5px 8px; border-radius: 2px; font-weight: 600; letter-spacing: 0.3px; text-transform: uppercase; }
     .tag.type-ride   { background: #e8f0ff; color: #3355aa; }
     .tag.type-show   { background: #fff0e0; color: #885522; }
@@ -217,30 +141,24 @@
     .tag.type-ll-single { background: #fff3cd; color: #856404; border: 1px solid #ffc107; }
     .tag.type-ll-multi  { background: #e7f3ff; color: #0056b3; border: 1px solid #b8daff; }
     .tag.height, .tag.showtime { background: transparent; color: var(--slate); font-weight: 400; font-style: italic; font-size: 12px; padding: 0; letter-spacing: 0; text-transform: none; }
-
     .priority-pill { font-size: 11px; font-family: 'Cinzel', serif; font-weight: 600; padding: 2px 8px; border-radius: 10px; }
     .priority-pill.p1 { background: var(--crimson); color: #ffeaea; }
     .priority-pill.p2 { background: var(--gold); color: #fff8e0; }
     .priority-pill.p3 { background: #778899; color: #edf2f7; }
     .priority-pill.p5 { background: #ccbbaa; color: #5a4a3a; }
     .disney-view .priority-pill.p1 { background: var(--disney-blue-light); color: #e0eaff; }
-    .epic-view .priority-pill.p1   { background: #5c2d7a; color: #e8d8ff; }
-
+    .epic-view   .priority-pill.p1 { background: #5c2d7a; color: #e8d8ff; }
     .attr-note { margin-top: 7px; font-family: 'Crimson Pro', serif; font-size: 14px; font-style: italic; color: var(--ink-light); line-height: 1.55; padding: 7px 10px; border-radius: 2px; background: rgba(184,134,11,0.08); border-left: 2px solid var(--gold); }
     .attr-note.ll-note { background: rgba(201,168,76,0.1); border-left-color: var(--disney-gold); color: #5a4200; }
-
-    /* Park divider */
     .park-divider { text-align: center; margin: 40px 0 30px; position: relative; }
     .park-divider::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; opacity: 0.4; }
     .universal-view .park-divider::before { background: var(--gold); }
-    .disney-view .park-divider::before    { background: var(--disney-blue-light); }
-    .epic-view .park-divider::before      { background: #7c3aed; }
+    .disney-view    .park-divider::before { background: var(--disney-blue-light); }
+    .epic-view      .park-divider::before { background: #7c3aed; }
     .park-divider-label { display: inline-block; position: relative; background: var(--parchment); padding: 0 20px; font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; }
     .universal-view .park-divider-label { color: var(--gold); }
-    .disney-view .park-divider-label    { color: var(--disney-blue-light); }
-    .epic-view .park-divider-label      { color: #7c3aed; }
-
-    /* Spells */
+    .disney-view    .park-divider-label { color: var(--disney-blue-light); }
+    .epic-view      .park-divider-label { color: #7c3aed; }
     .spells-block { background: rgba(102,51,170,0.05); border: 1px solid rgba(102,51,170,0.18); border-radius: 4px; margin-top: 8px; overflow: hidden; margin-bottom: 36px; }
     .spells-toggle { width: 100%; text-align: left; padding: 11px 16px; background: transparent; border: none; cursor: pointer; font-family: 'Cinzel', serif; font-size: 13px; color: #6633aa; letter-spacing: 1px; display: flex; justify-content: space-between; align-items: center; }
     .spell-row { padding: 9px 16px 9px 32px; border-top: 1px solid rgba(102,51,170,0.1); font-family: 'Crimson Pro', serif; font-size: 14px; line-height: 1.5; }
@@ -248,219 +166,199 @@
     .spell-location { font-size: 12px; color: #8866bb; margin-bottom: 2px; }
     .spell-rows { display: none; }
     .spell-rows.open { display: block; }
-
     .footer-note { margin-top: 48px; text-align: center; font-family: 'Crimson Pro', serif; font-style: italic; font-size: 14px; color: var(--slate); border-top: 1px solid var(--parchment-dark); padding-top: 24px; }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
-      #home-view { padding: 48px 16px 32px; justify-content: flex-start; }
+      .page-header { padding: 40px 16px 36px; }
       .home-title { font-size: 36px; }
-      .home-subtitle { font-size: 11px; margin-bottom: 36px; }
-      .home-divider { margin-bottom: 36px; }
-      .park-cards { gap: 16px; }
-      .park-card { flex: 1 1 100%; max-width: 100%; padding: 28px 22px; }
-      .card-icon { font-size: 36px; }
-      .card-title { font-size: 20px; }
-      .itinerary-wrap { padding: 20px 14px 48px; }
-      .header { padding: 24px 12px 22px; }
-      .header-title { font-size: 26px; }
+      .panels-wrap { padding: 24px 12px 60px; gap: 12px; }
+      .panel-header { padding: 18px 16px; gap: 12px; }
+      .panel-icon { font-size: 26px; }
+      .panel-title { font-size: 16px; }
+      .panel-chevron { font-size: 10px; padding: 6px 10px; }
+      .panel-highlights { display: none; }
+      .itinerary-wrap { padding: 20px 14px 36px; }
+      .header-title { font-size: 22px; }
       .entry-tip { font-size: 13px; padding: 9px 14px; }
-      .back-btn { font-size: 10px; padding: 6px 12px; margin-bottom: 20px; }
       .legend { gap: 8px; justify-content: flex-start; margin-bottom: 24px; }
       .legend-item { font-size: 12px; }
       .filter-bar { gap: 6px; margin-bottom: 20px; }
       .filter-btn { font-size: 10px; padding: 4px 11px; }
-      .zone-header { gap: 8px; }
       .zone-badge { font-size: 8px; padding: 2px 7px; }
       .zone-name { font-size: 14px; }
       .attraction { padding: 10px 12px; gap: 10px; }
       .attr-rank { width: 18px; font-size: 10px; }
       .attr-name { font-size: 14px; }
-      .attr-meta { gap: 5px; margin-top: 4px; }
       .tag { font-size: 10px; padding: 1px 6px; }
       .attr-note { font-size: 13px; padding: 6px 9px; }
       .priority-pill { font-size: 10px; padding: 1px 7px; }
-      .park-divider { margin: 28px 0 20px; }
-      .park-divider-label { font-size: 11px; letter-spacing: 2px; }
       .zone-note { font-size: 13px; }
       .spells-toggle { font-size: 11px; padding: 10px 14px; }
       .spell-row { font-size: 13px; padding: 8px 14px 8px 20px; }
-      .spell-location { font-size: 11px; }
       .footer-note { margin-top: 32px; font-size: 12px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════════════ HOME VIEW -->
-<div id="home-view" class="view active">
+<div class="page-header">
   <div class="home-eyebrow">Florida Family Trip · 2026</div>
   <div class="home-title">The Grand Plan</div>
   <div class="home-subtitle">June 11 – 13, 2026</div>
   <div class="home-divider"></div>
-
-  <div class="park-cards">
-    <div class="park-card universal" onclick="showView('universal-view')">
-      <div class="card-day">June 11 · Day 1</div>
-      <span class="card-icon">🧙‍♂️</span>
-      <div class="card-title">Universal Studios &amp;<br>Islands of Adventure</div>
-      <div class="card-sub">Early Park Admission Day</div>
-      <div class="card-highlights">
-        <span class="card-highlight-tag">Hagrid's Motorbike</span>
-        <span class="card-highlight-tag">Wizarding World</span>
-        <span class="card-highlight-tag">VelociCoaster</span>
-        <span class="card-highlight-tag">E.T. Adventure</span>
-        <span class="card-highlight-tag">25 Wand Spells</span>
-      </div>
-      <div class="card-desc">Two parks in one day — start with early access to Hogsmeade and end with dinner at Antojitos in CityWalk.</div>
-      <span class="card-btn">View Day Plan →</span>
-    </div>
-
-    <div class="park-card disney" onclick="showView('disney-view')">
-      <div class="card-day">June 12 · Day 2</div>
-      <span class="card-icon">⭐</span>
-      <div class="card-title">Hollywood Studios</div>
-      <div class="card-sub">Walt Disney World</div>
-      <div class="card-highlights">
-        <span class="card-highlight-tag">Rise of the Resistance</span>
-        <span class="card-highlight-tag">Galaxy's Edge</span>
-        <span class="card-highlight-tag">Tower of Terror</span>
-        <span class="card-highlight-tag">Fantasmic!</span>
-        <span class="card-highlight-tag">Oga's Cantina</span>
-      </div>
-      <div class="card-desc">A full day from Galaxy's Edge at open to Fantasmic! under the stars — with Indiana Jones and Tower of Terror in between.</div>
-      <span class="card-btn">View Day Plan →</span>
-    </div>
-
-    <div class="park-card epic" onclick="showView('epic-view')">
-      <div class="card-day">June 13 · Day 3</div>
-      <span class="card-icon">🌌</span>
-      <div class="card-title">Epic Universe</div>
-      <div class="card-sub">Universal Orlando · Brand New 2025</div>
-      <div class="card-highlights">
-        <span class="card-highlight-tag">Ministry of Magic</span>
-        <span class="card-highlight-tag">Super Nintendo World</span>
-        <span class="card-highlight-tag">Dark Universe</span>
-        <span class="card-highlight-tag">Isle of Berk</span>
-        <span class="card-highlight-tag">Stardust Racers</span>
-      </div>
-      <div class="card-desc">Four fully immersive portal worlds — dragons, monsters, Mario, and 1920s Paris. The newest theme park on Earth.</div>
-      <span class="card-btn">View Day Plan →</span>
-    </div>
-  </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════ UNIVERSAL VIEW -->
-<div id="universal-view" class="view universal-view">
-  <div class="itinerary-wrap">
-    <button class="back-btn" onclick="showView('home-view')">← All Parks</button>
+<div class="panels-wrap">
 
-    <div class="header">
-      <div class="header-eyebrow">Family Trip · 2026</div>
-      <div class="header-title">Universal Studios &amp;<br>Islands of Adventure</div>
-      <div class="header-sub">The Complete Day Plan</div>
-      <div class="entry-tip">
-        <strong>Entry:</strong> CityWalk → turn <strong>left</strong> to Islands of Adventure → head immediately to <strong>Hogsmeade</strong> (Early Park Admission)<br>
-        Hagrid's ride is the <em>entire reason</em> for arriving early — do not stop until you're in line.
+  <div class="panel universal" id="panel-universal">
+    <div class="panel-header" onclick="togglePanel('panel-universal')">
+      <span class="panel-icon">🧙‍♂️</span>
+      <div class="panel-meta">
+        <div class="panel-day">June 11 · Day 1</div>
+        <div class="panel-title">Universal Studios &amp; Islands of Adventure</div>
+        <div class="panel-sub">Early Park Admission Day</div>
+        <div class="panel-highlights">
+          <span class="panel-tag">Hagrid's Motorbike</span>
+          <span class="panel-tag">Wizarding World</span>
+          <span class="panel-tag">VelociCoaster</span>
+          <span class="panel-tag">E.T. Adventure</span>
+          <span class="panel-tag">25 Wand Spells</span>
+        </div>
+      </div>
+      <span class="panel-chevron" id="chevron-panel-universal">View Plan ▼</span>
+    </div>
+    <div class="panel-body universal-view">
+      <div class="itinerary-wrap">
+        <div class="header">
+          <div class="header-eyebrow">Family Trip · 2026</div>
+          <div class="header-title">Universal Studios &amp;<br>Islands of Adventure</div>
+          <div class="header-sub">The Complete Day Plan</div>
+          <div class="entry-tip">
+            <strong>Entry:</strong> CityWalk → turn <strong>left</strong> to Islands of Adventure → head immediately to <strong>Hogsmeade</strong> (Early Park Admission)<br>
+            Hagrid's ride is the <em>entire reason</em> for arriving early — do not stop until you're in line.
+          </div>
+        </div>
+        <div class="legend">
+          <span class="filter-label">Priority Guide:</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#8b1a1a"></span>1 — Must Do</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#b8860b"></span>2 — Try to Do</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#778899"></span>3 — Possibly Do</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#ccbbaa"></span>5 — If Time Allows</span>
+        </div>
+        <div class="filter-bar">
+          <span class="filter-label">Show:</span>
+          <button class="filter-btn active" onclick="setFilter(this,'panel-universal','all')">All Attractions</button>
+          <button class="filter-btn" onclick="setFilter(this,'panel-universal','must')">Must-Do Only</button>
+        </div>
+        <div class="park-divider"><span class="park-divider-label">🏰 Islands of Adventure</span></div>
+        <div id="universal-zones-ioa"></div>
+        <div id="universal-spells-hogsmeade"></div>
+        <div id="universal-zones-bridge"></div>
+        <div class="park-divider"><span class="park-divider-label">🎬 Universal Studios Florida</span></div>
+        <div id="universal-zones-us"></div>
+        <div id="universal-spells-diagon"></div>
+        <div id="universal-spells-knockturn"></div>
+        <div class="park-divider"><span class="park-divider-label">🌆 Heading Out — CityWalk</span></div>
+        <div id="universal-zones-cw"></div>
+        <div class="footer-note">Zones listed in walk-through order · Priority 6 attractions omitted</div>
       </div>
     </div>
-
-    <div class="legend">
-      <span class="filter-label">Priority Guide:</span>
-      <span class="legend-item"><span class="legend-dot" style="background:#8b1a1a"></span>1 — Must Do</span>
-      <span class="legend-item"><span class="legend-dot" style="background:#b8860b"></span>2 — Try to Do</span>
-      <span class="legend-item"><span class="legend-dot" style="background:#778899"></span>3 — Possibly Do</span>
-      <span class="legend-item"><span class="legend-dot" style="background:#ccbbaa"></span>5 — If Time Allows</span>
-    </div>
-
-    <div class="filter-bar">
-      <span class="filter-label">Show:</span>
-      <button class="filter-btn active" onclick="setFilter(this,'universal-view','all')">All Attractions</button>
-      <button class="filter-btn" onclick="setFilter(this,'universal-view','must')">Must-Do Only</button>
-    </div>
-
-    <div class="park-divider"><span class="park-divider-label">🏰 Islands of Adventure</span></div>
-    <div id="universal-zones-ioa"></div>
-    <div id="universal-spells-hogsmeade"></div>
-    <div id="universal-zones-bridge"></div>
-    <div class="park-divider"><span class="park-divider-label">🎬 Universal Studios Florida</span></div>
-    <div id="universal-zones-us"></div>
-    <div id="universal-spells-diagon"></div>
-    <div id="universal-spells-knockturn"></div>
-    <div class="park-divider"><span class="park-divider-label">🌆 Heading Out — CityWalk</span></div>
-    <div id="universal-zones-cw"></div>
-    <div class="footer-note">Zones are listed in walk-through order · Priority 6 attractions omitted</div>
   </div>
-</div>
 
-<!-- ═══════════════════════════════════════════════════════════ DISNEY VIEW -->
-<div id="disney-view" class="view disney-view">
-  <div class="itinerary-wrap">
-    <button class="back-btn" onclick="showView('home-view')">← All Parks</button>
-
-    <div class="header">
-      <div class="header-eyebrow">Family Trip · 2026</div>
-      <div class="header-title">Hollywood Studios</div>
-      <div class="header-sub">The Complete Day Plan</div>
-      <div class="entry-tip">
-        <strong>Entry:</strong> Turn <strong>left at Echo Lake</strong>, head <strong>straight back to Galaxy's Edge</strong> — Rise of the Resistance is your first priority.<br>
-        Buy the <em>Lightning Lane Single Pass for Rise of the Resistance</em> before or the moment you enter the park.
+  <div class="panel disney" id="panel-disney">
+    <div class="panel-header" onclick="togglePanel('panel-disney')">
+      <span class="panel-icon">⭐</span>
+      <div class="panel-meta">
+        <div class="panel-day">June 12 · Day 2</div>
+        <div class="panel-title">Hollywood Studios</div>
+        <div class="panel-sub">Walt Disney World</div>
+        <div class="panel-highlights">
+          <span class="panel-tag">Rise of the Resistance</span>
+          <span class="panel-tag">Galaxy's Edge</span>
+          <span class="panel-tag">Tower of Terror</span>
+          <span class="panel-tag">Fantasmic!</span>
+          <span class="panel-tag">Oga's Cantina</span>
+        </div>
+      </div>
+      <span class="panel-chevron" id="chevron-panel-disney">View Plan ▼</span>
+    </div>
+    <div class="panel-body disney-view">
+      <div class="itinerary-wrap">
+        <div class="header">
+          <div class="header-eyebrow">Family Trip · 2026</div>
+          <div class="header-title">Hollywood Studios</div>
+          <div class="header-sub">The Complete Day Plan</div>
+          <div class="entry-tip">
+            <strong>Entry:</strong> Turn <strong>left at Echo Lake</strong>, head <strong>straight back to Galaxy's Edge</strong> — Rise of the Resistance is your first priority.<br>
+            Buy the <em>Lightning Lane Single Pass for Rise of the Resistance</em> before or the moment you enter the park.
+          </div>
+        </div>
+        <div class="legend">
+          <span class="filter-label">Priority Guide:</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#2a5298"></span>1 — Must Do</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#b8860b"></span>2 — Try to Do</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#778899"></span>3 — Possibly Do</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#ccbbaa"></span>5 — If Time Allows</span>
+        </div>
+        <div class="filter-bar">
+          <span class="filter-label">Show:</span>
+          <button class="filter-btn active" onclick="setFilter(this,'panel-disney','all')">All Attractions</button>
+          <button class="filter-btn" onclick="setFilter(this,'panel-disney','must')">Must-Do Only</button>
+        </div>
+        <div class="park-divider"><span class="park-divider-label">🚀 Hollywood Studios</span></div>
+        <div id="disney-zones"></div>
+        <div class="footer-note">Zones listed in walk-through order · LL = Lightning Lane · Priority 6 attractions omitted</div>
       </div>
     </div>
-
-    <div class="legend">
-      <span class="filter-label">Priority Guide:</span>
-      <span class="legend-item"><span class="legend-dot" style="background:#2a5298"></span>1 — Must Do</span>
-      <span class="legend-item"><span class="legend-dot" style="background:#b8860b"></span>2 — Try to Do</span>
-      <span class="legend-item"><span class="legend-dot" style="background:#778899"></span>3 — Possibly Do</span>
-      <span class="legend-item"><span class="legend-dot" style="background:#ccbbaa"></span>5 — If Time Allows</span>
-    </div>
-
-    <div class="filter-bar">
-      <span class="filter-label">Show:</span>
-      <button class="filter-btn active" onclick="setFilter(this,'disney-view','all')">All Attractions</button>
-      <button class="filter-btn" onclick="setFilter(this,'disney-view','must')">Must-Do Only</button>
-    </div>
-
-    <div class="park-divider"><span class="park-divider-label">🚀 Hollywood Studios</span></div>
-    <div id="disney-zones"></div>
-    <div class="footer-note">Zones listed in walk-through order · LL = Lightning Lane · Priority 6 attractions omitted</div>
   </div>
-</div>
 
-<!-- ═══════════════════════════════════════════════════════════ EPIC VIEW -->
-<div id="epic-view" class="view epic-view">
-  <div class="itinerary-wrap">
-    <button class="back-btn" onclick="showView('home-view')">← All Parks</button>
-
-    <div class="header">
-      <div class="header-eyebrow">Family Trip · 2026</div>
-      <div class="header-title">Epic Universe</div>
-      <div class="header-sub">The Complete Day Plan</div>
-      <div class="entry-tip">
-        <strong>Note:</strong> Epic Universe is 4.5 miles from CityWalk — <em>it is not connected to the other Universal parks.</em> Shuttle service runs between them, but plan travel time.<br>
-        Hotel guests get 1 hour Early Park Admission to Celestial Park, Dark Universe, and Super Nintendo World.
+  <div class="panel epic" id="panel-epic">
+    <div class="panel-header" onclick="togglePanel('panel-epic')">
+      <span class="panel-icon">🌌</span>
+      <div class="panel-meta">
+        <div class="panel-day">June 13 · Day 3</div>
+        <div class="panel-title">Epic Universe</div>
+        <div class="panel-sub">Universal Orlando · Brand New 2025</div>
+        <div class="panel-highlights">
+          <span class="panel-tag">Ministry of Magic</span>
+          <span class="panel-tag">Super Nintendo World</span>
+          <span class="panel-tag">Dark Universe</span>
+          <span class="panel-tag">Isle of Berk</span>
+          <span class="panel-tag">Stardust Racers</span>
+        </div>
+      </div>
+      <span class="panel-chevron" id="chevron-panel-epic">View Plan ▼</span>
+    </div>
+    <div class="panel-body epic-view">
+      <div class="itinerary-wrap">
+        <div class="header">
+          <div class="header-eyebrow">Family Trip · 2026</div>
+          <div class="header-title">Epic Universe</div>
+          <div class="header-sub">The Complete Day Plan</div>
+          <div class="entry-tip">
+            <strong>Note:</strong> Epic Universe is 4.5 miles from CityWalk — <em>it is not connected to the other Universal parks.</em> Shuttle service runs between them, but plan travel time.<br>
+            Hotel guests get 1 hour Early Park Admission to Celestial Park, Dark Universe, and Super Nintendo World.
+          </div>
+        </div>
+        <div class="legend">
+          <span class="filter-label">Priority Guide:</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#5c2d7a"></span>1 — Must Do</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#b8860b"></span>2 — Try to Do</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#778899"></span>3 — Possibly Do</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#ccbbaa"></span>5 — If Time Allows</span>
+        </div>
+        <div class="filter-bar">
+          <span class="filter-label">Show:</span>
+          <button class="filter-btn active" onclick="setFilter(this,'panel-epic','all')">All Attractions</button>
+          <button class="filter-btn" onclick="setFilter(this,'panel-epic','must')">Must-Do Only</button>
+        </div>
+        <div class="park-divider"><span class="park-divider-label">🌌 Epic Universe</span></div>
+        <div id="epic-zones"></div>
+        <div class="footer-note">Zones listed in walk-through order · Priority 6 attractions omitted</div>
       </div>
     </div>
-
-    <div class="legend">
-      <span class="filter-label">Priority Guide:</span>
-      <span class="legend-item"><span class="legend-dot" style="background:#5c2d7a"></span>1 — Must Do</span>
-      <span class="legend-item"><span class="legend-dot" style="background:#b8860b"></span>2 — Try to Do</span>
-      <span class="legend-item"><span class="legend-dot" style="background:#778899"></span>3 — Possibly Do</span>
-      <span class="legend-item"><span class="legend-dot" style="background:#ccbbaa"></span>5 — If Time Allows</span>
-    </div>
-
-    <div class="filter-bar">
-      <span class="filter-label">Show:</span>
-      <button class="filter-btn active" onclick="setFilter(this,'epic-view','all')">All Attractions</button>
-      <button class="filter-btn" onclick="setFilter(this,'epic-view','must')">Must-Do Only</button>
-    </div>
-
-    <div class="park-divider"><span class="park-divider-label">🌌 Epic Universe</span></div>
-    <div id="epic-zones"></div>
-    <div class="footer-note">Zones listed in walk-through order · Priority 6 attractions omitted</div>
   </div>
+
 </div>
 
 <script>
@@ -766,11 +664,20 @@ function buildEpic() {
 
 // ── INTERACTION ───────────────────────────────────────────────────────────────
 
-function showView(id) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  const el = document.getElementById(id);
-  el.classList.add('active');
-  window.scrollTo(0, 0);
+function togglePanel(id) {
+  const panels = document.querySelectorAll('.panel');
+  panels.forEach(p => {
+    if (p.id === id) {
+      const opening = !p.classList.contains('open');
+      p.classList.toggle('open', opening);
+      const chevron = document.getElementById('chevron-' + id);
+      if (chevron) chevron.textContent = opening ? 'Close ▲' : 'View Plan ▼';
+    } else {
+      p.classList.remove('open');
+      const chevron = document.getElementById('chevron-' + p.id);
+      if (chevron) chevron.textContent = 'View Plan ▼';
+    }
+  });
 }
 
 function toggleZone(zoneId) {
@@ -787,8 +694,8 @@ function toggleSpells(id, btn) {
   btn.querySelector('span:last-child').textContent = open ? '▲ Hide' : '▼ Show all ' + count + ' spells';
 }
 
-function setFilter(btn, viewId, mode) {
-  const view = document.getElementById(viewId);
+function setFilter(btn, panelId, mode) {
+  const view = document.getElementById(panelId);
   view.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
 
@@ -820,5 +727,5 @@ buildUniversal();
 buildDisney();
 buildEpic();
 </script>
+
 </body>
-</html>
