@@ -9,193 +9,175 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --parchment: #f5edd6; --parchment-dark: #e8d9b5; --ink: #1e1a10; --ink-light: #3d3520;
-      --gold: #b8860b; --gold-light: #d4a017; --crimson: #8b1a1a; --forest: #1a3d2b;
-      --forest-light: #2d5a3f; --slate: #4a5568; --disney-blue: #1a3a6b;
-      --disney-blue-light: #2a5298; --disney-gold: #c9a84c;
+      --parchment:#f5edd6; --parchment-dark:#e8d9b5; --ink:#1e1a10; --ink-light:#3d3520;
+      --gold:#b8860b; --gold-light:#d4a017; --crimson:#8b1a1a;
+      --forest:#1a3d2b; --forest-light:#2d5a3f; --slate:#4a5568;
+      --disney-blue:#1a3a6b; --disney-blue-light:#2a5298; --disney-gold:#c9a84c;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Crimson Pro', Georgia, serif; background: var(--parchment); color: var(--ink); }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Crimson Pro',Georgia,serif;background:var(--parchment);color:var(--ink);min-height:100vh;}
 
-    /* PAGE HEADER */
-    .page-header { text-align: center; padding: 56px 24px 48px; position: relative; }
-    .page-header::before { content: ''; position: fixed; inset: 0; background: radial-gradient(ellipse at 15% 20%, rgba(184,134,11,0.09) 0%, transparent 55%), radial-gradient(ellipse at 85% 80%, rgba(26,58,107,0.08) 0%, transparent 55%), radial-gradient(ellipse at 50% 50%, rgba(26,61,43,0.05) 0%, transparent 70%); pointer-events: none; z-index: 0; }
-    .page-header > * { position: relative; z-index: 1; }
-    .home-eyebrow { font-family: 'Crimson Pro', serif; font-style: italic; font-size: 16px; color: var(--gold); letter-spacing: 2.5px; margin-bottom: 10px; }
-    .home-title   { font-family: 'Cinzel', serif; font-size: clamp(32px, 7vw, 58px); font-weight: 700; color: var(--ink); line-height: 1.1; letter-spacing: 1px; margin-bottom: 6px; }
-    .home-subtitle{ font-family: 'Cinzel', serif; font-size: clamp(11px, 2vw, 14px); letter-spacing: 4px; color: var(--gold); text-transform: uppercase; }
-    .home-divider { width: 120px; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); margin: 32px auto 0; }
+    .page-header{text-align:center;padding:56px 24px 48px;position:relative;}
+    .page-header::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 15% 20%,rgba(184,134,11,.07) 0%,transparent 55%),radial-gradient(ellipse at 85% 80%,rgba(26,58,107,.06) 0%,transparent 55%),radial-gradient(ellipse at 50% 50%,rgba(26,61,43,.04) 0%,transparent 70%);pointer-events:none;z-index:0;}
+    .page-header>*{position:relative;z-index:1;}
+    .home-eyebrow{font-family:'Crimson Pro',serif;font-style:italic;font-size:16px;color:var(--gold);letter-spacing:2.5px;margin-bottom:10px;}
+    .home-title{font-family:'Cinzel',serif;font-size:clamp(32px,7vw,56px);font-weight:700;color:var(--ink);line-height:1.1;letter-spacing:1px;margin-bottom:6px;}
+    .home-subtitle{font-family:'Cinzel',serif;font-size:clamp(11px,2vw,14px);letter-spacing:4px;color:var(--gold);text-transform:uppercase;}
+    .home-divider{width:120px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:28px auto 0;}
 
-    /* ACCORDION PANELS */
-    .panels-wrap { max-width: 900px; margin: 0 auto; padding: 40px 20px 80px; display: flex; flex-direction: column; gap: 16px; }
-    .panel { border-radius: 4px; overflow: hidden; border: 1px solid transparent; }
-    .panel-header { display: flex; align-items: center; gap: 20px; padding: 28px 32px; cursor: pointer; user-select: none; position: relative; overflow: hidden; transition: opacity 0.15s; }
-    .panel-header::before { content: ''; position: absolute; inset: 0; opacity: 0.04; background-image: repeating-linear-gradient(45deg, currentColor 0px, currentColor 1px, transparent 1px, transparent 12px); }
-    .panel-header:hover { opacity: 0.88; }
-    .panel.universal .panel-header { background: linear-gradient(135deg, #1e2a1a 0%, #0f1a0e 100%); }
-    .panel.disney    .panel-header { background: linear-gradient(135deg, #0f1d40 0%, #080f22 100%); }
-    .panel.epic      .panel-header { background: linear-gradient(135deg, #1a0a2e 0%, #0d0618 100%); }
-    .panel.universal { border-color: rgba(184,134,11,0.3); }
-    .panel.disney    { border-color: rgba(201,168,76,0.3); }
-    .panel.epic      { border-color: rgba(168,130,255,0.3); }
-    .panel-icon { font-size: 36px; line-height: 1; flex-shrink: 0; position: relative; }
-    .panel-meta { flex: 1; position: relative; }
-    .panel-day { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
-    .panel.universal .panel-day { color: rgba(168,213,181,0.7); }
-    .panel.disney    .panel-day { color: rgba(201,168,76,0.7); }
-    .panel.epic      .panel-day { color: rgba(168,130,255,0.7); }
-    .panel-title { font-family: 'Cinzel', serif; font-size: clamp(16px, 3vw, 22px); font-weight: 700; line-height: 1.2; margin-bottom: 4px; }
-    .panel.universal .panel-title { color: #d4e8dc; }
-    .panel.disney    .panel-title { color: #c8d8ff; }
-    .panel.epic      .panel-title { color: #ddd0ff; }
-    .panel-sub { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
-    .panel.universal .panel-sub { color: rgba(184,134,11,0.8); }
-    .panel.disney    .panel-sub { color: rgba(201,168,76,0.8); }
-    .panel.epic      .panel-sub { color: rgba(200,168,255,0.8); }
-    .panel-highlights { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
-    .panel-tag { font-family: 'Crimson Pro', serif; font-size: 12px; padding: 2px 9px; border-radius: 2px; }
-    .panel.universal .panel-tag { background: rgba(168,213,181,0.1); color: #a8d5b5; border: 1px solid rgba(168,213,181,0.2); }
-    .panel.disney    .panel-tag { background: rgba(201,168,76,0.1); color: var(--disney-gold); border: 1px solid rgba(201,168,76,0.2); }
-    .panel.epic      .panel-tag { background: rgba(168,130,255,0.1); color: #c4a8ff; border: 1px solid rgba(168,130,255,0.25); }
-    .panel-chevron { position: relative; flex-shrink: 0; font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 1.5px; padding: 8px 18px; border-radius: 2px; border: 1px solid; white-space: nowrap; transition: all 0.15s; }
-    .panel.universal .panel-chevron { color: #a8d5b5; border-color: rgba(168,213,181,0.35); }
-    .panel.disney    .panel-chevron { color: #c8d8ff; border-color: rgba(200,216,255,0.35); }
-    .panel.epic      .panel-chevron { color: #c4a8ff; border-color: rgba(196,168,255,0.35); }
-    .panel.open .panel-chevron { background: rgba(255,255,255,0.08); }
-    .panel-body { display: none; background: var(--parchment); border-top: 2px solid; }
-    .panel.universal .panel-body { border-top-color: rgba(184,134,11,0.4); }
-    .panel.disney    .panel-body { border-top-color: rgba(42,82,152,0.4); }
-    .panel.epic      .panel-body { border-top-color: rgba(92,45,122,0.4); }
-    .panel.open .panel-body { display: block; }
+    .days-wrap{max-width:900px;margin:0 auto;padding:40px 20px 80px;display:flex;flex-direction:column;gap:20px;}
 
-    /* ITINERARY CONTENT */
-    .itinerary-wrap { max-width: 860px; margin: 0 auto; padding: 36px 28px 48px; }
-    .header { text-align: center; padding: 0 20px 28px; position: relative; margin-bottom: 36px; }
-    .header::before { content: ''; display: block; height: 2px; margin-bottom: 28px; }
-    .universal-view .header::before { background: var(--gold); }
-    .disney-view    .header::before { background: var(--disney-blue); }
-    .epic-view      .header::before { background: #5c2d7a; }
-    .header::after { content: '\2756 \2756 \2756'; position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); background: var(--parchment); padding: 0 16px; font-size: 14px; letter-spacing: 8px; }
-    .universal-view .header::after { color: var(--gold); }
-    .disney-view    .header::after { color: var(--disney-blue); }
-    .epic-view      .header::after { color: #5c2d7a; }
-    .header-eyebrow { font-family: 'Crimson Pro', serif; font-style: italic; font-size: 15px; letter-spacing: 2px; margin-bottom: 10px; }
-    .universal-view .header-eyebrow { color: var(--gold); }
-    .disney-view    .header-eyebrow { color: var(--disney-blue-light); }
-    .epic-view      .header-eyebrow { color: #7c3aed; }
-    .header-title { font-family: 'Cinzel', serif; font-size: clamp(22px, 4vw, 34px); font-weight: 700; color: var(--ink); line-height: 1.15; letter-spacing: 1px; margin-bottom: 6px; }
-    .header-sub { font-family: 'Cinzel', serif; font-size: clamp(11px, 2vw, 13px); letter-spacing: 3px; font-weight: 400; text-transform: uppercase; margin-bottom: 16px; }
-    .universal-view .header-sub { color: var(--gold); }
-    .disney-view    .header-sub { color: var(--disney-blue-light); }
-    .epic-view      .header-sub { color: #7c3aed; }
-    .entry-tip { display: inline-block; font-family: 'Crimson Pro', serif; font-size: 15px; font-style: italic; padding: 10px 22px; border-radius: 2px; margin-top: 8px; line-height: 1.55; }
-    .entry-tip strong { font-style: normal; font-weight: 600; }
-    .universal-view .entry-tip { background: var(--forest); color: #d4e8dc; }
-    .universal-view .entry-tip strong { color: #7fc99a; }
-    .disney-view    .entry-tip { background: var(--disney-blue); color: #c8d8ff; }
-    .disney-view    .entry-tip strong { color: #90b8ff; }
-    .epic-view      .entry-tip { background: #1a0a2e; color: #d8c8ff; }
-    .epic-view      .entry-tip strong { color: #b89aff; }
-    .legend { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 36px; font-size: 13px; }
-    .legend-item { display: flex; align-items: center; gap: 6px; font-family: 'Crimson Pro', serif; color: var(--ink-light); }
-    .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-    .filter-label { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 1.5px; color: var(--slate); text-transform: uppercase; margin-right: 4px; }
-    .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; align-items: center; }
-    .filter-btn { font-family: 'Cinzel', serif; font-size: 11px; padding: 5px 14px; border-radius: 2px; border: 1px solid var(--parchment-dark); background: transparent; color: var(--ink-light); cursor: pointer; letter-spacing: 0.5px; transition: all 0.15s; }
-    .filter-btn:hover, .filter-btn.active { background: var(--ink); color: var(--parchment); border-color: var(--ink); }
-    .zone { margin-bottom: 36px; }
-    .zone-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--parchment-dark); cursor: pointer; user-select: none; }
-    .zone-badge { font-family: 'Cinzel', serif; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 9px; border-radius: 2px; flex-shrink: 0; }
-    .zone-badge.ioa { background: var(--forest); color: #a8d5b5; }
-    .zone-badge.us  { background: var(--crimson); color: #f5c4c4; }
-    .zone-badge.dis { background: var(--disney-blue); color: #c8d8ff; }
-    .zone-badge.eu  { background: #5c2d7a; color: #e0d0ff; }
-    .zone-badge.cw  { background: #555; color: #ddd; }
-    .zone-name { font-family: 'Cinzel', serif; font-size: clamp(14px, 2.5vw, 17px); font-weight: 600; color: var(--ink); flex: 1; }
-    .zone-toggle { font-size: 12px; color: var(--gold); transition: transform 0.2s; }
-    .zone-toggle.open { transform: rotate(90deg); }
-    .zone-body.hidden { display: none; }
-    .zone-note { margin-bottom: 10px; padding: 8px 12px; background: rgba(26,61,43,0.07); border-left: 3px solid var(--forest-light); font-size: 14px; font-style: italic; color: var(--forest); font-family: 'Crimson Pro', serif; line-height: 1.5; }
-    .zone-note.disney-note { background: rgba(26,58,107,0.07); border-left-color: var(--disney-blue-light); color: var(--disney-blue); }
-    .zone-note.epic-note   { background: rgba(92,45,122,0.07); border-left-color: #7c3aed; color: #4a1d7a; }
-    .attraction { display: flex; gap: 14px; padding: 13px 16px; margin-bottom: 7px; border-radius: 3px; border-left: 3px solid transparent; background: rgba(255,255,255,0.45); transition: background 0.15s; }
-    .attraction:hover { background: rgba(255,255,255,0.72); }
-    .attraction.priority-1 { border-left-color: var(--crimson); }
-    .attraction.priority-2 { border-left-color: var(--gold); }
-    .attraction.priority-3 { border-left-color: #8899aa; }
-    .attraction.priority-5 { border-left-color: var(--parchment-dark); opacity: 0.75; }
-    .attraction.priority-other { border-left-color: var(--gold-light); }
-    .disney-view .attraction.priority-1 { border-left-color: var(--disney-blue-light); }
-    .epic-view   .attraction.priority-1 { border-left-color: #7c3aed; }
-    .attr-rank { font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700; width: 22px; flex-shrink: 0; color: var(--slate); padding-top: 2px; text-align: center; }
-    .attr-body { flex: 1; }
-    .attr-name { font-family: 'Crimson Pro', serif; font-weight: 600; font-size: 16px; color: var(--ink); line-height: 1.3; }
-    .attr-meta { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 5px; align-items: center; }
-    .tag { font-family: 'Crimson Pro', serif; font-size: 11.5px; padding: 1.5px 8px; border-radius: 2px; font-weight: 600; letter-spacing: 0.3px; text-transform: uppercase; }
-    .tag.type-ride   { background: #e8f0ff; color: #3355aa; }
-    .tag.type-show   { background: #fff0e0; color: #885522; }
-    .tag.type-water  { background: #e0f4ff; color: #1166aa; }
-    .tag.type-poi    { background: #f0ffe8; color: #336622; }
-    .tag.type-food   { background: #fff0f0; color: #aa3333; }
-    .tag.type-notes  { background: #fafaf0; color: #667733; }
-    .tag.type-ll-single { background: #fff3cd; color: #856404; border: 1px solid #ffc107; }
-    .tag.type-ll-multi  { background: #e7f3ff; color: #0056b3; border: 1px solid #b8daff; }
-    .tag.height, .tag.showtime { background: transparent; color: var(--slate); font-weight: 400; font-style: italic; font-size: 12px; padding: 0; letter-spacing: 0; text-transform: none; }
-    .priority-pill { font-size: 11px; font-family: 'Cinzel', serif; font-weight: 600; padding: 2px 8px; border-radius: 10px; }
-    .priority-pill.p1 { background: var(--crimson); color: #ffeaea; }
-    .priority-pill.p2 { background: var(--gold); color: #fff8e0; }
-    .priority-pill.p3 { background: #778899; color: #edf2f7; }
-    .priority-pill.p5 { background: #ccbbaa; color: #5a4a3a; }
-    .disney-view .priority-pill.p1 { background: var(--disney-blue-light); color: #e0eaff; }
-    .epic-view   .priority-pill.p1 { background: #5c2d7a; color: #e8d8ff; }
-    .attr-note { margin-top: 7px; font-family: 'Crimson Pro', serif; font-size: 14px; font-style: italic; color: var(--ink-light); line-height: 1.55; padding: 7px 10px; border-radius: 2px; background: rgba(184,134,11,0.08); border-left: 2px solid var(--gold); }
-    .attr-note.ll-note { background: rgba(201,168,76,0.1); border-left-color: var(--disney-gold); color: #5a4200; }
-    .park-divider { text-align: center; margin: 40px 0 30px; position: relative; }
-    .park-divider::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; opacity: 0.4; }
-    .universal-view .park-divider::before { background: var(--gold); }
-    .disney-view    .park-divider::before { background: var(--disney-blue-light); }
-    .epic-view      .park-divider::before { background: #7c3aed; }
-    .park-divider-label { display: inline-block; position: relative; background: var(--parchment); padding: 0 20px; font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; }
-    .universal-view .park-divider-label { color: var(--gold); }
-    .disney-view    .park-divider-label { color: var(--disney-blue-light); }
-    .epic-view      .park-divider-label { color: #7c3aed; }
-    .spells-block { background: rgba(102,51,170,0.05); border: 1px solid rgba(102,51,170,0.18); border-radius: 4px; margin-top: 8px; overflow: hidden; margin-bottom: 36px; }
-    .spells-toggle { width: 100%; text-align: left; padding: 11px 16px; background: transparent; border: none; cursor: pointer; font-family: 'Cinzel', serif; font-size: 13px; color: #6633aa; letter-spacing: 1px; display: flex; justify-content: space-between; align-items: center; }
-    .spell-row { padding: 9px 16px 9px 32px; border-top: 1px solid rgba(102,51,170,0.1); font-family: 'Crimson Pro', serif; font-size: 14px; line-height: 1.5; }
-    .spell-name { font-weight: 700; color: #6633aa; font-style: italic; }
-    .spell-location { font-size: 12px; color: #8866bb; margin-bottom: 2px; }
-    .spell-rows { display: none; }
-    .spell-rows.open { display: block; }
-    .footer-note { margin-top: 48px; text-align: center; font-family: 'Crimson Pro', serif; font-style: italic; font-size: 14px; color: var(--slate); border-top: 1px solid var(--parchment-dark); padding-top: 24px; }
+    .day-accordion{border-radius:6px;overflow:hidden;border:1px solid transparent;transition:box-shadow .2s;}
+    .day-accordion.open{box-shadow:0 8px 40px rgba(0,0,0,.13);}
+    .day-accordion.universal{border-color:rgba(184,134,11,.25);}
+    .day-accordion.disney{border-color:rgba(201,168,76,.2);}
+    .day-accordion.epic{border-color:rgba(168,130,255,.25);}
 
-    @media (max-width: 600px) {
-      .page-header { padding: 40px 16px 36px; }
-      .home-title { font-size: 36px; }
-      .panels-wrap { padding: 24px 12px 60px; gap: 12px; }
-      .panel-header { padding: 18px 16px; gap: 12px; }
-      .panel-icon { font-size: 26px; }
-      .panel-title { font-size: 16px; }
-      .panel-chevron { font-size: 10px; padding: 6px 10px; }
-      .panel-highlights { display: none; }
-      .itinerary-wrap { padding: 20px 14px 36px; }
-      .header-title { font-size: 22px; }
-      .entry-tip { font-size: 13px; padding: 9px 14px; }
-      .legend { gap: 8px; justify-content: flex-start; margin-bottom: 24px; }
-      .legend-item { font-size: 12px; }
-      .filter-bar { gap: 6px; margin-bottom: 20px; }
-      .filter-btn { font-size: 10px; padding: 4px 11px; }
-      .zone-badge { font-size: 8px; padding: 2px 7px; }
-      .zone-name { font-size: 14px; }
-      .attraction { padding: 10px 12px; gap: 10px; }
-      .attr-rank { width: 18px; font-size: 10px; }
-      .attr-name { font-size: 14px; }
-      .tag { font-size: 10px; padding: 1px 6px; }
-      .attr-note { font-size: 13px; padding: 6px 9px; }
-      .priority-pill { font-size: 10px; padding: 1px 7px; }
-      .zone-note { font-size: 13px; }
-      .spells-toggle { font-size: 11px; padding: 10px 14px; }
-      .spell-row { font-size: 13px; padding: 8px 14px 8px 20px; }
-      .footer-note { margin-top: 32px; font-size: 12px; }
+    .day-header{display:flex;align-items:center;gap:20px;padding:28px 32px;cursor:pointer;user-select:none;position:relative;overflow:hidden;}
+    .day-header::before{content:'';position:absolute;inset:0;opacity:.04;background-image:repeating-linear-gradient(45deg,currentColor 0px,currentColor 1px,transparent 1px,transparent 12px);}
+    .day-accordion.universal .day-header{background:linear-gradient(135deg,#1e2a1a,#0f1a0e);}
+    .day-accordion.disney .day-header{background:linear-gradient(135deg,#0f1d40,#080f22);}
+    .day-accordion.epic .day-header{background:linear-gradient(135deg,#1a0a2e,#0d0618);}
+
+    .day-header-icon{font-size:38px;line-height:1;flex-shrink:0;position:relative;}
+    .day-header-text{flex:1;position:relative;}
+    .day-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:5px;}
+    .day-accordion.universal .day-label{color:rgba(168,213,181,.65);}
+    .day-accordion.disney .day-label{color:rgba(201,168,76,.65);}
+    .day-accordion.epic .day-label{color:rgba(168,130,255,.65);}
+    .day-name{font-family:'Cinzel',serif;font-size:clamp(16px,3vw,22px);font-weight:700;line-height:1.2;margin-bottom:6px;}
+    .day-accordion.universal .day-name{color:#d4e8dc;}
+    .day-accordion.disney .day-name{color:#c8d8ff;}
+    .day-accordion.epic .day-name{color:#ddd0ff;}
+    .day-sub{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;}
+    .day-accordion.universal .day-sub{color:rgba(184,134,11,.75);}
+    .day-accordion.disney .day-sub{color:rgba(201,168,76,.75);}
+    .day-accordion.epic .day-sub{color:rgba(200,168,255,.75);}
+    .day-highlights{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;}
+    .day-highlight-tag{font-family:'Crimson Pro',serif;font-size:12px;padding:2px 9px;border-radius:2px;}
+    .day-accordion.universal .day-highlight-tag{background:rgba(168,213,181,.1);color:#a8d5b5;border:1px solid rgba(168,213,181,.18);}
+    .day-accordion.disney .day-highlight-tag{background:rgba(201,168,76,.1);color:var(--disney-gold);border:1px solid rgba(201,168,76,.18);}
+    .day-accordion.epic .day-highlight-tag{background:rgba(168,130,255,.1);color:#c4a8ff;border:1px solid rgba(168,130,255,.22);}
+
+    .day-expand-btn{position:relative;flex-shrink:0;font-family:'Cinzel',serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:8px 18px;border-radius:2px;border:1px solid;background:transparent;cursor:pointer;transition:all .15s;white-space:nowrap;}
+    .day-accordion.universal .day-expand-btn{color:#a8d5b5;border-color:rgba(168,213,181,.35);}
+    .day-accordion.universal .day-expand-btn:hover{background:rgba(168,213,181,.1);}
+    .day-accordion.disney .day-expand-btn{color:#c8d8ff;border-color:rgba(200,216,255,.35);}
+    .day-accordion.disney .day-expand-btn:hover{background:rgba(200,216,255,.08);}
+    .day-accordion.epic .day-expand-btn{color:#c4a8ff;border-color:rgba(196,168,255,.35);}
+    .day-accordion.epic .day-expand-btn:hover{background:rgba(196,168,255,.08);}
+
+    .day-body{display:none;background:var(--parchment);border-top:1px solid;}
+    .day-accordion.universal .day-body{border-color:rgba(184,134,11,.2);}
+    .day-accordion.disney .day-body{border-color:rgba(26,58,107,.2);}
+    .day-accordion.epic .day-body{border-color:rgba(92,45,122,.2);}
+    .day-accordion.open .day-body{display:block;}
+    .day-body-inner{max-width:860px;margin:0 auto;padding:36px 28px 48px;}
+
+    .entry-tip{display:block;font-family:'Crimson Pro',serif;font-size:15px;font-style:italic;padding:12px 20px;border-radius:3px;margin-bottom:32px;line-height:1.6;}
+    .entry-tip strong{font-style:normal;font-weight:600;}
+    .universal-body .entry-tip{background:var(--forest);color:#d4e8dc;}
+    .universal-body .entry-tip strong{color:#7fc99a;}
+    .disney-body .entry-tip{background:var(--disney-blue);color:#c8d8ff;}
+    .disney-body .entry-tip strong{color:#90b8ff;}
+    .epic-body .entry-tip{background:#1a0a2e;color:#d8c8ff;}
+    .epic-body .entry-tip strong{color:#b89aff;}
+
+    .legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;font-size:13px;align-items:center;}
+    .legend-item{display:flex;align-items:center;gap:6px;font-family:'Crimson Pro',serif;color:var(--ink-light);}
+    .legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+    .filter-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:1.5px;color:var(--slate);text-transform:uppercase;margin-right:4px;}
+
+    .filter-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;align-items:center;}
+    .filter-btn{font-family:'Cinzel',serif;font-size:11px;padding:5px 14px;border-radius:2px;border:1px solid var(--parchment-dark);background:transparent;color:var(--ink-light);cursor:pointer;letter-spacing:.5px;transition:all .15s;}
+    .filter-btn:hover,.filter-btn.active{background:var(--ink);color:var(--parchment);border-color:var(--ink);}
+
+    .park-divider{text-align:center;margin:36px 0 24px;position:relative;}
+    .park-divider::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;opacity:.35;}
+    .universal-body .park-divider::before{background:var(--gold);}
+    .disney-body .park-divider::before{background:var(--disney-blue-light);}
+    .epic-body .park-divider::before{background:#7c3aed;}
+    .park-divider-label{display:inline-block;position:relative;background:var(--parchment);padding:0 20px;font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;}
+    .universal-body .park-divider-label{color:var(--gold);}
+    .disney-body .park-divider-label{color:var(--disney-blue-light);}
+    .epic-body .park-divider-label{color:#7c3aed;}
+
+    .zone{margin-bottom:32px;}
+    .zone-header{display:flex;align-items:center;gap:14px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--parchment-dark);cursor:pointer;user-select:none;}
+    .zone-badge{font-family:'Cinzel',serif;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:2px;flex-shrink:0;}
+    .zone-badge.ioa{background:var(--forest);color:#a8d5b5;}
+    .zone-badge.us{background:var(--crimson);color:#f5c4c4;}
+    .zone-badge.dis{background:var(--disney-blue);color:#c8d8ff;}
+    .zone-badge.eu{background:#5c2d7a;color:#e0d0ff;}
+    .zone-badge.cw{background:#555;color:#ddd;}
+    .zone-name{font-family:'Cinzel',serif;font-size:clamp(13px,2.2vw,16px);font-weight:600;color:var(--ink);flex:1;}
+    .zone-toggle{font-size:12px;color:var(--gold);transition:transform .2s;}
+    .zone-toggle.open{transform:rotate(90deg);}
+    .zone-body.hidden{display:none;}
+    .zone-note{margin-bottom:10px;padding:8px 12px;border-left:3px solid;font-size:14px;font-style:italic;font-family:'Crimson Pro',serif;line-height:1.5;border-radius:0 2px 2px 0;}
+    .universal-body .zone-note{background:rgba(26,61,43,.07);border-color:var(--forest-light);color:var(--forest);}
+    .disney-body .zone-note{background:rgba(26,58,107,.07);border-color:var(--disney-blue-light);color:var(--disney-blue);}
+    .epic-body .zone-note{background:rgba(92,45,122,.07);border-color:#7c3aed;color:#4a1d7a;}
+
+    .attraction{display:flex;gap:14px;padding:12px 16px;margin-bottom:7px;border-radius:3px;border-left:3px solid transparent;background:rgba(255,255,255,.45);transition:background .15s;}
+    .attraction:hover{background:rgba(255,255,255,.72);}
+    .universal-body .attraction.priority-1{border-left-color:var(--crimson);}
+    .universal-body .attraction.priority-2{border-left-color:var(--gold);}
+    .disney-body .attraction.priority-1{border-left-color:var(--disney-blue-light);}
+    .disney-body .attraction.priority-2{border-left-color:var(--gold);}
+    .epic-body .attraction.priority-1{border-left-color:#7c3aed;}
+    .epic-body .attraction.priority-2{border-left-color:var(--gold);}
+    .attraction.priority-3{border-left-color:#8899aa;}
+    .attraction.priority-5{border-left-color:var(--parchment-dark);opacity:.75;}
+    .attraction.priority-other{border-left-color:var(--gold-light);}
+    .attr-rank{font-family:'Cinzel',serif;font-size:11px;font-weight:700;width:22px;flex-shrink:0;color:var(--slate);padding-top:2px;text-align:center;}
+    .attr-body{flex:1;}
+    .attr-name{font-family:'Crimson Pro',serif;font-weight:600;font-size:16px;color:var(--ink);line-height:1.3;}
+    .attr-meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:5px;align-items:center;}
+    .tag{font-family:'Crimson Pro',serif;font-size:11px;padding:1.5px 7px;border-radius:2px;font-weight:600;letter-spacing:.3px;text-transform:uppercase;}
+    .tag.type-ride{background:#e8f0ff;color:#3355aa;}
+    .tag.type-show{background:#fff0e0;color:#885522;}
+    .tag.type-water{background:#e0f4ff;color:#1166aa;}
+    .tag.type-poi{background:#f0ffe8;color:#336622;}
+    .tag.type-food{background:#fff0f0;color:#aa3333;}
+    .tag.type-notes{background:#fafaf0;color:#667733;}
+    .tag.type-ll-single{background:#fff3cd;color:#856404;border:1px solid #ffc107;}
+    .tag.type-ll-multi{background:#e7f3ff;color:#0056b3;border:1px solid #b8daff;}
+    .tag.height,.tag.showtime{background:transparent;color:var(--slate);font-weight:400;font-style:italic;font-size:12px;padding:0;letter-spacing:0;text-transform:none;}
+    .priority-pill{font-size:11px;font-family:'Cinzel',serif;font-weight:600;padding:2px 8px;border-radius:10px;}
+    .priority-pill.p1{background:var(--crimson);color:#ffeaea;}
+    .priority-pill.p2{background:var(--gold);color:#fff8e0;}
+    .priority-pill.p3{background:#778899;color:#edf2f7;}
+    .priority-pill.p5{background:#ccbbaa;color:#5a4a3a;}
+    .disney-body .priority-pill.p1{background:var(--disney-blue-light);color:#e0eaff;}
+    .epic-body .priority-pill.p1{background:#5c2d7a;color:#e8d8ff;}
+    .attr-note{margin-top:7px;font-family:'Crimson Pro',serif;font-size:14px;font-style:italic;color:var(--ink-light);line-height:1.55;padding:7px 10px;border-radius:2px;background:rgba(184,134,11,.08);border-left:2px solid var(--gold);}
+    .attr-note.ll-note{background:rgba(201,168,76,.1);border-left-color:var(--disney-gold);color:#5a4200;}
+
+    .spells-block{background:rgba(102,51,170,.05);border:1px solid rgba(102,51,170,.18);border-radius:4px;margin-top:8px;overflow:hidden;margin-bottom:32px;}
+    .spells-toggle{width:100%;text-align:left;padding:11px 16px;background:transparent;border:none;cursor:pointer;font-family:'Cinzel',serif;font-size:13px;color:#6633aa;letter-spacing:1px;display:flex;justify-content:space-between;align-items:center;}
+    .spell-row{padding:9px 16px 9px 28px;border-top:1px solid rgba(102,51,170,.1);font-family:'Crimson Pro',serif;font-size:14px;line-height:1.5;}
+    .spell-name{font-weight:700;color:#6633aa;font-style:italic;}
+    .spell-location{font-size:12px;color:#8866bb;margin-bottom:2px;}
+    .spell-rows{display:none;}
+    .spell-rows.open{display:block;}
+
+    .footer-note{margin-top:40px;text-align:center;font-family:'Crimson Pro',serif;font-style:italic;font-size:14px;color:var(--slate);border-top:1px solid var(--parchment-dark);padding-top:20px;}
+
+    @media(max-width:600px){
+      .page-header{padding:40px 16px 32px;}
+      .home-title{font-size:34px;}
+      .days-wrap{padding:24px 12px 60px;gap:14px;}
+      .day-header{padding:20px 18px;gap:12px;}
+      .day-header-icon{font-size:28px;}
+      .day-name{font-size:15px;}
+      .day-expand-btn{font-size:9px;padding:6px 10px;}
+      .day-highlights{display:none;}
+      .day-body-inner{padding:20px 14px 36px;}
+      .entry-tip{font-size:13px;padding:10px 14px;margin-bottom:20px;}
+      .attr-name{font-size:14px;}
+      .tag{font-size:10px;}
+      .attr-note{font-size:13px;}
     }
   </style>
 </head>
@@ -208,48 +190,30 @@
   <div class="home-divider"></div>
 </div>
 
-<div class="panels-wrap">
+<div class="days-wrap">
 
-  <div class="panel universal" id="panel-universal">
-    <div class="panel-header" onclick="togglePanel('panel-universal')">
-      <span class="panel-icon">🧙‍♂️</span>
-      <div class="panel-meta">
-        <div class="panel-day">June 11 · Day 1</div>
-        <div class="panel-title">Universal Studios &amp; Islands of Adventure</div>
-        <div class="panel-sub">Early Park Admission Day<br>Walk to Sapphire Falls and take boat to CityWalk</div>
-        <div class="panel-highlights">
-          <span class="panel-tag">Hagrid's Motorbike</span>
-          <span class="panel-tag">Wizarding World</span>
-          <span class="panel-tag">VelociCoaster</span>
-          <span class="panel-tag">E.T. Adventure</span>
-          <span class="panel-tag">25 Wand Spells</span>
+  <div class="day-accordion universal" id="acc-universal">
+    <div class="day-header" onclick="toggleDay('universal')">
+      <div class="day-header-icon">🧙‍♂️</div>
+      <div class="day-header-text">
+        <div class="day-label">June 11 · Day 1</div>
+        <div class="day-name">Universal Studios &amp; Islands of Adventure</div>
+        <div class="day-sub">Early Park Admission Day</div>
+        <div class="day-highlights">
+          <span class="day-highlight-tag">Hagrid's Motorbike</span>
+          <span class="day-highlight-tag">Wizarding World</span>
+          <span class="day-highlight-tag">VelociCoaster</span>
+          <span class="day-highlight-tag">E.T. Adventure</span>
+          <span class="day-highlight-tag">25 Wand Spells</span>
         </div>
       </div>
-      <span class="panel-chevron" id="chevron-panel-universal">View Plan ▼</span>
+      <button class="day-expand-btn" id="btn-universal">Expand ▼</button>
     </div>
-    <div class="panel-body universal-view">
-      <div class="itinerary-wrap">
-        <div class="header">
-          <div class="header-eyebrow">Family Trip · 2026</div>
-          <div class="header-title">Universal Studios &amp;<br>Islands of Adventure</div>
-          <div class="header-sub">The Complete Day Plan</div>
-          <div class="entry-tip">
-            <strong>Entry:</strong> CityWalk → turn <strong>left</strong> to Islands of Adventure → head immediately to <strong>Hogsmeade</strong> (Early Park Admission)<br>
-            Hagrid's ride is the <em>entire reason</em> for arriving early — do not stop until you're in line.
-          </div>
-        </div>
-        <div class="legend">
-          <span class="filter-label">Priority Guide:</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#8b1a1a"></span>1 — Must Do</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#b8860b"></span>2 — Try to Do</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#778899"></span>3 — Possibly Do</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#ccbbaa"></span>5 — If Time Allows</span>
-        </div>
-        <div class="filter-bar">
-          <span class="filter-label">Show:</span>
-          <button class="filter-btn active" onclick="setFilter(this,'panel-universal','all')">All Attractions</button>
-          <button class="filter-btn" onclick="setFilter(this,'panel-universal','must')">Must-Do Only</button>
-        </div>
+    <div class="day-body universal-body" id="body-universal">
+      <div class="day-body-inner">
+        <div class="entry-tip"><strong>Entry:</strong> CityWalk → turn <strong>left</strong> to Islands of Adventure → head immediately to <strong>Hogsmeade</strong> (Early Park Admission)<br>Hagrid's ride is the <em>entire reason</em> for arriving early — do not stop until you're in line.</div>
+        <div class="legend"><span class="filter-label">Priority:</span><span class="legend-item"><span class="legend-dot" style="background:#8b1a1a"></span>1 — Must Do</span><span class="legend-item"><span class="legend-dot" style="background:#b8860b"></span>2 — Try to Do</span><span class="legend-item"><span class="legend-dot" style="background:#778899"></span>3 — Possibly Do</span><span class="legend-item"><span class="legend-dot" style="background:#ccbbaa"></span>5 — If Time Allows</span></div>
+        <div class="filter-bar"><span class="filter-label">Show:</span><button class="filter-btn active" onclick="setFilter(this,'body-universal','all')">All Attractions</button><button class="filter-btn" onclick="setFilter(this,'body-universal','must')">Must-Do Only</button></div>
         <div class="park-divider"><span class="park-divider-label">🏰 Islands of Adventure</span></div>
         <div id="universal-zones-ioa"></div>
         <div id="universal-spells-hogsmeade"></div>
@@ -265,93 +229,57 @@
     </div>
   </div>
 
-  <div class="panel disney" id="panel-disney">
-    <div class="panel-header" onclick="togglePanel('panel-disney')">
-      <span class="panel-icon">⭐</span>
-      <div class="panel-meta">
-        <div class="panel-day">June 12 · Day 2</div>
-        <div class="panel-title">Hollywood Studios</div>
-        <div class="panel-sub">Walt Disney World</div>
-        <div class="panel-highlights">
-          <span class="panel-tag">Rise of the Resistance</span>
-          <span class="panel-tag">Galaxy's Edge</span>
-          <span class="panel-tag">Tower of Terror</span>
-          <span class="panel-tag">Fantasmic!</span>
-          <span class="panel-tag">Oga's Cantina</span>
+  <div class="day-accordion disney" id="acc-disney">
+    <div class="day-header" onclick="toggleDay('disney')">
+      <div class="day-header-icon">⭐</div>
+      <div class="day-header-text">
+        <div class="day-label">June 12 · Day 2</div>
+        <div class="day-name">Hollywood Studios</div>
+        <div class="day-sub">Walt Disney World</div>
+        <div class="day-highlights">
+          <span class="day-highlight-tag">Rise of the Resistance</span>
+          <span class="day-highlight-tag">Galaxy's Edge</span>
+          <span class="day-highlight-tag">Tower of Terror</span>
+          <span class="day-highlight-tag">Fantasmic!</span>
+          <span class="day-highlight-tag">Oga's Cantina</span>
         </div>
       </div>
-      <span class="panel-chevron" id="chevron-panel-disney">View Plan ▼</span>
+      <button class="day-expand-btn" id="btn-disney">Expand ▼</button>
     </div>
-    <div class="panel-body disney-view">
-      <div class="itinerary-wrap">
-        <div class="header">
-          <div class="header-eyebrow">Family Trip · 2026</div>
-          <div class="header-title">Hollywood Studios</div>
-          <div class="header-sub">The Complete Day Plan</div>
-          <div class="entry-tip">
-            <strong>Entry:</strong> Turn <strong>left at Echo Lake</strong>, head <strong>straight back to Galaxy's Edge</strong> — Rise of the Resistance is your first priority.<br>
-            Buy the <em>Lightning Lane Single Pass for Rise of the Resistance</em> before or the moment you enter the park.
-          </div>
-        </div>
-        <div class="legend">
-          <span class="filter-label">Priority Guide:</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#2a5298"></span>1 — Must Do</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#b8860b"></span>2 — Try to Do</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#778899"></span>3 — Possibly Do</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#ccbbaa"></span>5 — If Time Allows</span>
-        </div>
-        <div class="filter-bar">
-          <span class="filter-label">Show:</span>
-          <button class="filter-btn active" onclick="setFilter(this,'panel-disney','all')">All Attractions</button>
-          <button class="filter-btn" onclick="setFilter(this,'panel-disney','must')">Must-Do Only</button>
-        </div>
-        <div class="park-divider"><span class="park-divider-label">🚀 Hollywood Studios</span></div>
+    <div class="day-body disney-body" id="body-disney">
+      <div class="day-body-inner">
+        <div class="entry-tip"><strong>Entry:</strong> Head straight to <strong>Galaxy's Edge</strong> — your Smugglers Run LL window opens at <strong>10:10am</strong>, so go straight there on arrival.<br>Rise of the Resistance is your <strong>evening anchor</strong> (LL window 8:30–9:30pm) — no morning scramble. The day flows Galaxy's Edge → Echo Lake → Toy Story Land → Hollywood Blvd cluster → Dinner → Galaxy's Edge at night → Fantasmic!</div>
+        <div class="legend"><span class="filter-label">Priority:</span><span class="legend-item"><span class="legend-dot" style="background:#2a5298"></span>1 — Must Do</span><span class="legend-item"><span class="legend-dot" style="background:#b8860b"></span>2 — Try to Do</span><span class="legend-item"><span class="legend-dot" style="background:#778899"></span>3 — Possibly Do</span><span class="legend-item"><span class="legend-dot" style="background:#ccbbaa"></span>5 — If Time Allows</span></div>
+        <div class="filter-bar"><span class="filter-label">Show:</span><button class="filter-btn active" onclick="setFilter(this,'body-disney','all')">All Attractions</button><button class="filter-btn" onclick="setFilter(this,'body-disney','must')">Must-Do Only</button></div>
+        <div class="park-divider"><span class="park-divider-label">⭐ Hollywood Studios — June 12</span></div>
         <div id="disney-zones"></div>
         <div class="footer-note">Zones listed in walk-through order · LL = Lightning Lane · Priority 6 attractions omitted</div>
       </div>
     </div>
   </div>
 
-  <div class="panel epic" id="panel-epic">
-    <div class="panel-header" onclick="togglePanel('panel-epic')">
-      <span class="panel-icon">🌌</span>
-      <div class="panel-meta">
-        <div class="panel-day">June 13 · Day 3</div>
-        <div class="panel-title">Epic Universe</div>
-        <div class="panel-sub">Universal Orlando · Brand New 2025</div>
-        <div class="panel-highlights">
-          <span class="panel-tag">Ministry of Magic</span>
-          <span class="panel-tag">Super Nintendo World</span>
-          <span class="panel-tag">Dark Universe</span>
-          <span class="panel-tag">Isle of Berk</span>
-          <span class="panel-tag">Stardust Racers</span>
+  <div class="day-accordion epic" id="acc-epic">
+    <div class="day-header" onclick="toggleDay('epic')">
+      <div class="day-header-icon">🌌</div>
+      <div class="day-header-text">
+        <div class="day-label">June 13 · Day 3</div>
+        <div class="day-name">Epic Universe</div>
+        <div class="day-sub">Universal Orlando · Brand New 2025</div>
+        <div class="day-highlights">
+          <span class="day-highlight-tag">Ministry of Magic</span>
+          <span class="day-highlight-tag">Super Nintendo World</span>
+          <span class="day-highlight-tag">Dark Universe</span>
+          <span class="day-highlight-tag">Isle of Berk</span>
+          <span class="day-highlight-tag">Stardust Racers</span>
         </div>
       </div>
-      <span class="panel-chevron" id="chevron-panel-epic">View Plan ▼</span>
+      <button class="day-expand-btn" id="btn-epic">Expand ▼</button>
     </div>
-    <div class="panel-body epic-view">
-      <div class="itinerary-wrap">
-        <div class="header">
-          <div class="header-eyebrow">Family Trip · 2026</div>
-          <div class="header-title">Epic Universe</div>
-          <div class="header-sub">The Complete Day Plan</div>
-          <div class="entry-tip">
-            <strong>Note:</strong> Epic Universe is 4.5 miles from CityWalk — <em>it is not connected to the other Universal parks.</em> Shuttle service runs between them, but plan travel time.<br>
-            Hotel guests get 1 hour Early Park Admission to Celestial Park, Dark Universe, and Super Nintendo World.
-          </div>
-        </div>
-        <div class="legend">
-          <span class="filter-label">Priority Guide:</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#5c2d7a"></span>1 — Must Do</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#b8860b"></span>2 — Try to Do</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#778899"></span>3 — Possibly Do</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#ccbbaa"></span>5 — If Time Allows</span>
-        </div>
-        <div class="filter-bar">
-          <span class="filter-label">Show:</span>
-          <button class="filter-btn active" onclick="setFilter(this,'panel-epic','all')">All Attractions</button>
-          <button class="filter-btn" onclick="setFilter(this,'panel-epic','must')">Must-Do Only</button>
-        </div>
+    <div class="day-body epic-body" id="body-epic">
+      <div class="day-body-inner">
+        <div class="entry-tip"><strong>Note:</strong> Epic Universe is 4.5 miles from CityWalk — <em>it is not connected to the other Universal parks.</em> Shuttle service runs between them, but plan travel time.<br>Hotel guests get 1 hour Early Park Admission to Celestial Park, Dark Universe, and Super Nintendo World.</div>
+        <div class="legend"><span class="filter-label">Priority:</span><span class="legend-item"><span class="legend-dot" style="background:#5c2d7a"></span>1 — Must Do</span><span class="legend-item"><span class="legend-dot" style="background:#b8860b"></span>2 — Try to Do</span><span class="legend-item"><span class="legend-dot" style="background:#778899"></span>3 — Possibly Do</span><span class="legend-item"><span class="legend-dot" style="background:#ccbbaa"></span>5 — If Time Allows</span></div>
+        <div class="filter-bar"><span class="filter-label">Show:</span><button class="filter-btn active" onclick="setFilter(this,'body-epic','all')">All Attractions</button><button class="filter-btn" onclick="setFilter(this,'body-epic','must')">Must-Do Only</button></div>
         <div class="park-divider"><span class="park-divider-label">🌌 Epic Universe</span></div>
         <div id="epic-zones"></div>
         <div class="footer-note">Zones listed in walk-through order · Priority 6 attractions omitted</div>
@@ -362,370 +290,281 @@
 </div>
 
 <script>
-// ── DATA ──────────────────────────────────────────────────────────────────────
+const PC={universal:{1:{l:"Must Do",c:"p1"},2:{l:"Try to Do",c:"p2"},3:{l:"Possibly Do",c:"p3"},5:{l:"If Time Allows",c:"p5"}},disney:{1:{l:"Must Do",c:"p1"},2:{l:"Try to Do",c:"p2"},3:{l:"Possibly Do",c:"p3"},5:{l:"If Time Allows",c:"p5"}},epic:{1:{l:"Must Do",c:"p1"},2:{l:"Try to Do",c:"p2"},3:{l:"Possibly Do",c:"p3"},5:{l:"If Time Allows",c:"p5"}}};
+const TL={ride:"Ride",show:"Show",water:"Water Ride",poi:"Point of Interest",food:"Food",notes:"Tip"};
+const TT={ride:"type-ride",show:"type-show",water:"type-water",poi:"type-poi",food:"type-food",notes:"type-notes"};
 
-const PRIORITY_CONFIG = {
-  universal: { 1:{label:"Must Do",cls:"p1",color:"#8b1a1a"}, 2:{label:"Try to Do",cls:"p2",color:"#b8860b"}, 3:{label:"Possibly Do",cls:"p3",color:"#778899"}, 5:{label:"If Time Allows",cls:"p5",color:"#ccbbaa"} },
-  disney:    { 1:{label:"Must Do",cls:"p1",color:"#2a5298"}, 2:{label:"Try to Do",cls:"p2",color:"#b8860b"}, 3:{label:"Possibly Do",cls:"p3",color:"#778899"}, 5:{label:"If Time Allows",cls:"p5",color:"#ccbbaa"} },
-  epic:      { 1:{label:"Must Do",cls:"p1",color:"#5c2d7a"}, 2:{label:"Try to Do",cls:"p2",color:"#b8860b"}, 3:{label:"Possibly Do",cls:"p3",color:"#778899"}, 5:{label:"If Time Allows",cls:"p5",color:"#ccbbaa"} },
-};
-
-const TYPE_LABELS = { ride:"Ride", show:"Show", water:"Water Ride", poi:"Point of Interest", food:"Food", notes:"Tip" };
-const TYPE_TAGS   = { ride:"type-ride", show:"type-show", water:"type-water", poi:"type-poi", food:"type-food", notes:"type-notes" };
-
-const UNIVERSAL_ZONES = [
-  { id:"ioa-hogsmeade", park:"IoA", name:"Hogsmeade — Islands of Adventure", note:"Enter here first during Early Park Admission — Hagrid's is the #1 priority!", items:[
-    { type:"ride", priority:1, name:"Hagrid's Magical Creatures Motorbike Adventure", height:"48in", note:"⚡ THE reason for Early Park Admission. Walk in, go straight here before the park opens to the public. This ride is never under 3 hrs once crowds arrive." },
-    { type:"ride", priority:1, name:"Harry Potter and the Forbidden Journey", height:"48in" },
-    { type:"ride", priority:1, name:"Flight of the Hippogriff", height:"36in" },
-    { type:"notes", name:"Moaning Myrtle in the Bathrooms", note:"Listen for Moaning Myrtle in the Hogsmeade restrooms — she makes an appearance!" },
+const UZ=[
+  {id:"ioa-hogsmeade",park:"IoA",name:"Hogsmeade — Islands of Adventure",note:"Enter here first during Early Park Admission — Hagrid's is the #1 priority!",items:[
+    {type:"ride",priority:1,name:"Hagrid's Magical Creatures Motorbike Adventure",height:"48in",note:"⚡ THE reason for Early Park Admission. Walk in, go straight here before the park opens to the public. This ride is never under 3 hrs once crowds arrive."},
+    {type:"ride",priority:1,name:"Harry Potter and the Forbidden Journey",height:"48in"},
+    {type:"ride",priority:1,name:"Flight of the Hippogriff",height:"36in"},
+    {type:"notes",name:"Moaning Myrtle in the Bathrooms",note:"Listen for Moaning Myrtle in the Hogsmeade restrooms — she makes an appearance!"},
   ]},
-  { id:"ioa-jurassic", park:"IoA", name:"Jurassic Park", items:[
-    { type:"ride", priority:1, name:"Jurassic World VelociCoaster", height:"51in" },
-    { type:"ride", priority:2, name:"Jurassic Park River Adventure", height:"42in", note:"⚠️ Check ahead — may be closed for renovations." },
+  {id:"ioa-jurassic",park:"IoA",name:"Jurassic Park",items:[
+    {type:"ride",priority:1,name:"Jurassic World VelociCoaster",height:"51in"},
+    {type:"ride",priority:2,name:"Jurassic Park River Adventure",height:"42in",note:"⚠️ Check ahead — may be closed for renovations."},
   ]},
-  { id:"ioa-skull", park:"IoA", name:"Skull Island", items:[
-    { type:"ride", priority:1, name:"Skull Island: Reign of Kong", height:"36in" },
+  {id:"ioa-skull",park:"IoA",name:"Skull Island",items:[{type:"ride",priority:1,name:"Skull Island: Reign of Kong",height:"36in"}]},
+  {id:"ioa-toon",park:"IoA",name:"Toon Lagoon",note:"Water rides — plan accordingly (bring a change of clothes or buy ponchos).",items:[
+    {type:"water",name:"Dudley Do-Right's Ripsaw Falls®",height:"44in"},
+    {type:"water",name:"Popeye & Bluto's Bilge-Rat Barges®",height:"42in"},
   ]},
-  { id:"ioa-toon", park:"IoA", name:"Toon Lagoon", note:"Water rides — plan accordingly (bring a change of clothes or buy ponchos).", items:[
-    { type:"water", name:"Dudley Do-Right's Ripsaw Falls®", height:"44in" },
-    { type:"water", name:"Popeye & Bluto's Bilge-Rat Barges®", height:"42in" },
+  {id:"ioa-seuss",park:"IoA",name:"Seuss Landing",items:[
+    {type:"ride",priority:5,name:"The High in the Sky Seuss Trolley Train Ride!™",height:"36in"},
+    {type:"ride",priority:5,name:"The Cat in the Hat™",height:"36in"},
   ]},
-  { id:"ioa-seuss", park:"IoA", name:"Seuss Landing", items:[
-    { type:"ride", priority:5, name:"The High in the Sky Seuss Trolley Train Ride!™", height:"36in" },
-    { type:"ride", priority:5, name:"The Cat in the Hat™", height:"36in" },
+  {id:"hogwarts-express",park:"both",name:"Hogwarts Express (connects both parks)",note:"Requires park-to-park ticket. Each direction is a different experience — ride both ways!",items:[
+    {type:"ride",priority:1,name:"Hogwarts Express – King's Cross Station (US → IoA)",note:"Ask the staff at King's Cross about Platform 9¾ before boarding — they'll show you a hidden trick!"},
+    {type:"ride",priority:1,name:"Hogwarts Express – Hogsmeade Station (IoA → US)"},
   ]},
-  { id:"hogwarts-express", park:"both", name:"Hogwarts Express (connects both parks)", note:"Requires park-to-park ticket. Each direction is a different experience — ride both ways!", items:[
-    { type:"ride", priority:1, name:"Hogwarts Express – King's Cross Station (US → IoA)", note:"Ask the staff at King's Cross about Platform 9¾ before boarding — they'll show you a hidden trick!" },
-    { type:"ride", priority:1, name:"Hogwarts Express – Hogsmeade Station (IoA → US)" },
+  {id:"us-diagon",park:"US",name:"Diagon Alley — Universal Studios",items:[
+    {type:"ride",priority:1,name:"Harry Potter and the Escape from Gringotts",height:"42in"},
+    {type:"show",priority:2,name:"The Tales of Beedle the Bard"},
+    {type:"poi",name:"Knight Bus",note:"Walk to the back of the Knight Bus to peek inside — most guests miss this!"},
+    {type:"poi",name:"London Phone Booth",note:"Dial 62442 (M-A-G-I-C) to hear a message from the Ministry of Magic."},
+    {type:"poi",name:"12 Grimmauld Place",note:"Look for Kreacher the house-elf in the second-floor window of the houses on the opposite end from King's Cross. Then knock on the door of 12 Grimmauld Place."},
+    {type:"notes",name:"Madam Malkin's Magical Mirror",note:"The mirror in Madam Malkin's Robes for All Occasions can talk. Stop and have a conversation!"},
   ]},
-  { id:"us-diagon", park:"US", name:"Diagon Alley — Universal Studios", items:[
-    { type:"ride", priority:1, name:"Harry Potter and the Escape from Gringotts", height:"42in" },
-    { type:"show", priority:2, name:"The Tales of Beedle the Bard" },
-    { type:"poi", name:"Knight Bus", note:"Walk to the back of the Knight Bus to peek inside — most guests miss this!" },
-    { type:"poi", name:"London Phone Booth", note:"Dial 62442 (M-A-G-I-C) to hear a message from the Ministry of Magic." },
-    { type:"poi", name:"12 Grimmauld Place", note:"Look for Kreacher the house-elf in the second-floor window of the houses on the opposite end from King's Cross. Then knock on the door of 12 Grimmauld Place." },
-    { type:"notes", name:"Madam Malkin's Magical Mirror", note:"The mirror in Madam Malkin's Robes for All Occasions can talk. Stop and have a conversation!" },
+  {id:"us-newyork",park:"US",name:"New York",items:[
+    {type:"ride",priority:1,name:"Race Through New York Starring Jimmy Fallon",height:"40in"},
+    {type:"ride",priority:2,name:"Revenge of the Mummy",height:"48in"},
   ]},
-  { id:"us-newyork", park:"US", name:"New York", items:[
-    { type:"ride", priority:1, name:"Race Through New York Starring Jimmy Fallon", height:"40in" },
-    { type:"ride", priority:2, name:"Revenge of the Mummy", height:"48in" },
+  {id:"us-production",park:"US",name:"Production Central",items:[
+    {type:"ride",priority:1,name:"Illumination's Villain-Con Minion Blast"},
+    {type:"ride",priority:3,name:"Despicable Me Minion Mayhem™",height:"40in"},
   ]},
-  { id:"us-production", park:"US", name:"Production Central", items:[
-    { type:"ride", priority:1, name:"Illumination's Villain-Con Minion Blast" },
-    { type:"ride", priority:3, name:"Despicable Me Minion Mayhem™", height:"40in" },
-  ]},
-  { id:"us-hollywood", park:"US", name:"Hollywood", items:[
-    { type:"ride", priority:1, name:"E.T. Adventure", height:"34in" },
-  ]},
-  { id:"us-dreamworks", park:"US", name:"DreamWorks Land", items:[
-    { type:"ride", priority:5, name:"Trolls Rollercoaster", height:"36in" },
-  ]},
-  { id:"us-springfield", park:"US", name:"Springfield", items:[
-    { type:"ride", priority:5, name:"The Simpsons Ride™", height:"40in" },
-  ]},
-  { id:"us-worldexpo", park:"US", name:"World Expo", items:[
-    { type:"ride", priority:1, name:"MEN IN BLACK™ Alien Attack", height:"42in" },
-  ]},
-  { id:"citywalk", park:"CW", name:"CityWalk — On the Way Out", note:"End-of-day stops as you exit toward the parking structure.", items:[
-    { type:"poi", name:"Berlin Wall Slab (behind Hard Rock)", note:"A slab of the actual Berlin Wall sits behind the Hard Rock Café. Walk around the right side of the building — past the stairs on your left — to the end of the path. Totally worth it." },
-    { type:"food", name:"Voodoo Doughnut", note:"On the CityWalk side heading toward Universal Studios. Open 8am–midnight — perfect end-of-day treat." },
-    { type:"food", name:"Dinner: Antojitos Authentic Mexican Food", note:"Located right behind Margaritaville. Open 4pm–midnight. 📞 Call ahead from inside the park to snag a reservation so you walk straight in — no waiting after a long day on your feet." },
+  {id:"us-hollywood",park:"US",name:"Hollywood",items:[{type:"ride",priority:1,name:"E.T. Adventure",height:"34in"}]},
+  {id:"us-dreamworks",park:"US",name:"DreamWorks Land",items:[{type:"ride",priority:5,name:"Trolls Rollercoaster",height:"36in"}]},
+  {id:"us-springfield",park:"US",name:"Springfield",items:[{type:"ride",priority:5,name:"The Simpsons Ride™",height:"40in"}]},
+  {id:"us-worldexpo",park:"US",name:"World Expo",items:[{type:"ride",priority:1,name:"MEN IN BLACK™ Alien Attack",height:"42in"}]},
+  {id:"citywalk",park:"CW",name:"CityWalk — On the Way Out",note:"End-of-day stops as you exit toward the parking structure.",items:[
+    {type:"poi",name:"Berlin Wall Slab (behind Hard Rock)",note:"A slab of the actual Berlin Wall sits behind the Hard Rock Café. Walk around the right side of the building — past the stairs on your left — to the end of the path. Totally worth it."},
+    {type:"food",name:"Voodoo Doughnut",note:"On the CityWalk side heading toward Universal Studios. Open 8am–midnight — perfect end-of-day treat."},
+    {type:"food",name:"Dinner: Antojitos Authentic Mexican Food",note:"Located right behind Margaritaville. Open 4pm–midnight. 📞 Call ahead from inside the park to snag a reservation so you walk straight in — no waiting after a long day on your feet."},
   ]},
 ];
 
-const SPELLS_HOGSMEADE = [
-  { location:"Zonko's Joke Shop", spell:"Incendio", effect:"Sets off spinning wheels and rockets." },
-  { location:"McHavelock's", spell:"Arresto Momentum", effect:"Stops water from pouring into a cauldron." },
-  { location:"Honeydukes", spell:"Revelio", effect:"Opens a chocolate frog box to reveal the frog." },
-  { location:"Dogweed and Deathcap", spell:"Herbivicus", effect:"Watch the plant in the window — leaves turn green." },
-  { location:"Gladbags Wizardwear", spell:"Ascendio / Descendio", effect:"Raises and lowers a measuring tape on the robe in the window." },
-  { location:"Madam Puddifoot's", spell:"Locomotor Snowman", effect:"Moves the snowman cake topper." },
-  { location:"Dervish and Banges", spell:"Locomotor / Arresto Momentum", effect:"Starts and stops the music box in the window." },
-  { location:"Tomes and Scrolls", spell:"Alohomora", effect:"Opens/Unlocks a copy of Tales of Beedle the Bard." },
-  { location:"Spintwitches", spell:"Wingardium Leviosa", effect:"Causes the Quidditch balls on display to levitate." },
+const SH=[
+  {location:"Zonko's Joke Shop",spell:"Incendio",effect:"Sets off spinning wheels and rockets."},
+  {location:"McHavelock's",spell:"Arresto Momentum",effect:"Stops water from pouring into a cauldron."},
+  {location:"Honeydukes",spell:"Revelio",effect:"Opens a chocolate frog box to reveal the frog."},
+  {location:"Dogweed and Deathcap",spell:"Herbivicus",effect:"Watch the plant in the window — leaves turn green."},
+  {location:"Gladbags Wizardwear",spell:"Ascendio / Descendio",effect:"Raises and lowers a measuring tape on the robe in the window."},
+  {location:"Madam Puddifoot's",spell:"Locomotor Snowman",effect:"Moves the snowman cake topper."},
+  {location:"Dervish and Banges",spell:"Locomotor / Arresto Momentum",effect:"Starts and stops the music box in the window."},
+  {location:"Tomes and Scrolls",spell:"Alohomora",effect:"Opens/Unlocks a copy of Tales of Beedle the Bard."},
+  {location:"Spintwitches",spell:"Wingardium Leviosa",effect:"Causes the Quidditch balls on display to levitate."},
+];
+const SD=[
+  {location:"Pilliwinkle's Playthings",spell:"Tarantallegra",effect:"The dancing feet spell causes trolls to dance in the window."},
+  {location:"Flimflam's Lanterns",spell:"Incendio",effect:"Lights the lanterns."},
+  {location:"Umbrella Sign",spell:"Meteolojinx",effect:"Make it rain!"},
+  {location:"Magical Menagerie",spell:"Silencio",effect:"Causes a creature to stop chirping."},
+  {location:"Wiseacre's Wizarding Equipment",spell:"Dark Detectors",effect:"Wave your wand and eyes open up in the window."},
+  {location:"Wiseacre's Wizarding Equipment",spell:"Specialis Revelio",effect:"Reveals an archer on a star map who fires an arrow; his dog retrieves it. Pretty cool!"},
+  {location:"Scribbulus",spell:"Wingardium Leviosa",effect:"Levitates a quill above a parchment."},
+  {location:"Bowman E. Wright Blacksmith",spell:"Reparo",effect:"Cast to repair."},
+  {location:"Bowman E. Wright Blacksmith",spell:"Locomotor Bellows",effect:"Works a bellows to stoke the blacksmith's fire."},
+  {location:"Mermaid Fountain",spell:"Aguamenti",effect:"Creates a stream of water from the fountain."},
+];
+const SK=[
+  {location:"Weasley's Wizard Wheezes",spell:"Descendo",effect:"Flushes a plunger down a toilet."},
+  {location:"Chimney Sweep Elf Sign",spell:"Locomotor Chimney Sweep",effect:"Look up for a red chimney sign — the spell makes a little sweep climb the chimney. Easy to miss!"},
+  {location:"Dystal Phaelanges",spell:"Moving Skeleton",effect:"Your body motions are mirrored by the skeleton in the window. One of the most popular!"},
+  {location:"Noggin and Bonce",spell:"Mimblewimble",effect:"Silences the talking heads in the window."},
+  {location:"Tallow and Hemp Toxic Tapers",spell:"Incendio",effect:"Various effects on the bird in the cage."},
+  {location:"Trackleshanks Locksmith",spell:"Alohomora",effect:"Watch out — a gust of wind might give you a scare!"},
 ];
 
-const SPELLS_DIAGON = [
-  { location:"Pilliwinkle's Playthings", spell:"Tarantallegra", effect:"The dancing feet spell causes trolls to dance in the window." },
-  { location:"Flimflam's Lanterns", spell:"Incendio", effect:"Lights the lanterns." },
-  { location:"Umbrella Sign", spell:"Meteolojinx", effect:"Make it rain!" },
-  { location:"Magical Menagerie", spell:"Silencio", effect:"Causes a creature to stop chirping." },
-  { location:"Wiseacre's Wizarding Equipment", spell:"Dark Detectors", effect:"Wave your wand and eyes open up in the window." },
-  { location:"Wiseacre's Wizarding Equipment", spell:"Specialis Revelio", effect:"Reveals an archer on a star map who fires an arrow; his dog retrieves it. Pretty cool!" },
-  { location:"Scribbulus", spell:"Wingardium Leviosa", effect:"Levitates a quill above a parchment." },
-  { location:"Bowman E. Wright Blacksmith", spell:"Reparo", effect:"Cast to repair." },
-  { location:"Bowman E. Wright Blacksmith", spell:"Locomotor Bellows", effect:"Works a bellows to stoke the blacksmith's fire." },
-  { location:"Mermaid Fountain", spell:"Aguamenti", effect:"Creates a stream of water from the fountain." },
+const HZ=[
+
+  // ── STOP 1: GALAXY'S EDGE (MORNING) ─────────────────────────────────────
+  {id:"hs-galaxys-edge-am",park:"DIS",name:"Star Wars: Galaxy's Edge — Morning",
+   note:"Enter the park and head straight to Galaxy's Edge — your Smugglers Run LL window opens at 10:10am so you want to be here and ready. Cast Members stay fully in character: bathrooms are 'refreshers,' water fountains are 'hydrators.' Say 'Bright suns!' in the morning. ⚠️ Note: the former Grand Avenue/Muppets Courtyard shortcut is under construction for Monsters Inc. Land — follow posted detour signs or enter Galaxy's Edge via Commissary Lane.",
+   items:[
+    {type:"ride",priority:1,ll:"multi",name:"Millennium Falcon: Smugglers Run",height:"38in",note:"🎟 LL Multi Pass window: 10:10–11:10am. Arrive by 10:00 to be ready at the tap point. 🆕 NEW MISSION: As of May 22, 2026 the ride has a new Mandalorian & Grogu storyline with updated destinations including Bespin, Endor, and Coruscant. 🎮 SECRET 'CHEWIE MODE': Before the cast member checks seatbelts — pilots push the stick all the way to one extreme then hit activate; gunners/engineers hold a white button first then press orange activate. If everyone nails it, Hondo disappears and Chewbacca takes over the whole mission."},
+    {type:"poi",name:"Dok-Ondar's Den of Antiquities",note:"Worth a few minutes while you're in the land: a taxidermied Wampa on the wall, a Rathtar in carbonite, and K-2SO from Rogue One in a droid cage."},
+    {type:"poi",name:"The Dianoga Water Fountain",note:"Near the Batuu Marketplace restrooms. Press the button and a one-eyed Dianoga — the trash compactor creature from A New Hope — pops up from the pipe and stares at you."},
+  ]},
+
+  // ── STOP 2: ECHO LAKE ────────────────────────────────────────────────────
+  {id:"hs-echo-lake",park:"DIS",name:"Echo Lake — Indiana Jones & Star Tours",
+   note:"From Galaxy's Edge, head back through Commissary Lane — Echo Lake is about a 5-minute walk. Your Indiana Jones LL window opens at 11:30. Star Tours follows immediately after at 12:00. Blue or Green Milk is a quick stop on your way out of Galaxy's Edge — grab one for the walk.",
+   items:[
+    {type:"food",name:"Blue or Green Milk (Milk Stand, Galaxy's Edge)",note:"Easy grab on your way out of Galaxy's Edge toward Echo Lake — blue is coconut-forward, green is citrusy. Worth it."},
+    {type:"show",priority:1,ll:"multi",name:"Indiana Jones™ Epic Stunt Spectacular",showtimes:"Our showtime: 11:30am (arrive by 11:15)",note:"🎟 LL Multi Pass window: 11:30–11:45am — this is the show you're attending, not a standby queue. Arrive about 15 minutes early to get a good seat. Want to be a volunteer extra? Sit front and center and be loudly enthusiastic when the casting director comes out — wave, stand up, shout. Must be 18+."},
+    {type:"poi",name:"The Rope Well Outside the Theater",note:"Find the well with the sign 'Warning: Do Not Pull Rope' — the 'Not' is crossed out. Pull it. You'll hear someone trapped at the bottom. Pull multiple times for different responses."},
+    {type:"ride",priority:1,ll:"multi",name:"Star Tours – The Adventures Continue",height:"40in",note:"🎟 LL Multi Pass window: 12:00–1:00pm. Dozens of randomized destination combos — almost no two rides are identical. Worth riding twice if the line is short after your LL ride."},
+    {type:"show",priority:3,name:"For the First Time in Forever: A Frozen Sing-Along Celebration",showtimes:"12:30 · 1:30 · 2:30 · 3:30 PM",note:"Air-conditioned theater right here in Echo Lake — great midday heat break if you have 30 minutes. The hosts are genuinely funny. Low wait, easy fit between Star Tours and lunch."},
+  ]},
+
+  // ── STOP 3: LUNCH ────────────────────────────────────────────────────────
+  {id:"hs-lunch",park:"DIS",name:"Lunch — Toy Story Land (~1:00–1:30pm)",
+   note:"Woody's Lunch Box is a short walk from Star Tours — head through Commissary Lane toward Toy Story Land. Mobile order ahead so you walk straight to the pickup window.",
+   items:[
+    {type:"food",name:"Woody's Lunch Box",note:"Comfort food done right — grilled cheese, totchos, breakfast items. Mobile order through the Disney app to skip the line. Quick service with outdoor seating under shady umbrellas."},
+  ]},
+
+  // ── STOP 4: TOY STORY LAND ───────────────────────────────────────────────
+  {id:"hs-toy-story",park:"DIS",name:"Toy Story Land",
+   note:"You're already here for lunch — stay and knock these out while crowds shift. The whole land is built as if you've been shrunk to toy size: Andy set this up in his backyard. The scale makes a lot more sense once you know that. Slinky Dog Dash is the priority here — standby waits are typically 45–65 minutes by early afternoon, so go straight there after eating.",
+   items:[
+    {type:"ride",priority:1,name:"Slinky Dog Dash",height:"38in",note:"The most popular standby ride in the park. Hit it right after lunch while you're already in Toy Story Land — standby typically runs 45–65 min mid-afternoon."},
+    {type:"ride",priority:2,name:"Toy Story Mania!",note:"Keep your arm moving even before targets appear — the gun fires faster the more you pull. Usually a shorter wait than Slinky."},
+    {type:"ride",priority:2,name:"Alien Swirling Saucers",height:"32in"},
+  ]},
+
+  // ── STOP 5: CHINESE THEATRE & HOLLYWOOD BLVD CLUSTER ────────────────────
+  {id:"hs-centre",park:"DIS",name:"Chinese Theatre · Hollywood Blvd · Pixar Plaza",
+   note:"From Toy Story Land, Runaway Railway is a 4–5 minute walk toward the Chinese Theatre. Tower of Terror and Beauty & the Beast are on Sunset Boulevard — a quick detour right off Hollywood Blvd. Stack these together as an afternoon cluster before dinner; it's efficient geography.",
+   items:[
+    {type:"ride",priority:1,name:"Mickey & Minnie's Runaway Railway",note:"No height requirement. There's a hidden B-plot running the entire ride — keep an eye on Pluto trying to steal a picnic basket. Most guests never notice."},
+    {type:"ride",priority:1,name:"The Twilight Zone Tower of Terror™",height:"40in",note:"Slow down in the queue — it's a fully themed 1939 Hollywood hotel frozen in time. 199 feet tall: deliberately one foot short of the FAA's aircraft warning light requirement to preserve the atmosphere. Waits tend to drop in the late afternoon."},
+    {type:"show",priority:3,name:"Beauty and the Beast – Live on Stage",showtimes:"4:00 PM · 5:00 PM",note:"On Sunset Boulevard, steps from Tower of Terror. If you're already on that end of the park, the 4:00 or 5:00 show fits naturally before you start heading toward dinner."},
+  ]},
+
+  // ── STOP 6: DINNER ───────────────────────────────────────────────────────
+  {id:"hs-dinner",park:"DIS",name:"Dinner — Commissary Lane (~6:30–7:00pm)",
+   note:"ABC Commissary is on Commissary Lane — which is literally the throughway between Echo Lake/Hollywood Blvd and Galaxy's Edge. Eating here puts you in perfect position to walk straight into Galaxy's Edge afterward for the evening experience before your Rise of the Resistance window.",
+   items:[
+    {type:"food",name:"ABC Commissary",note:"Counter-service with a varied menu — burgers, sandwiches, wraps, kids' options. Large air-conditioned dining room. Aim for 6:30–7:00pm; you'll be done and walking into Galaxy's Edge just as the lights start to shift for evening."},
+  ]},
+
+  // ── STOP 7: GALAXY'S EDGE (EVENING) ──────────────────────────────────────
+  {id:"hs-galaxys-edge-pm",park:"DIS",name:"Star Wars: Galaxy's Edge — Evening & Rise of the Resistance",
+   note:"Galaxy's Edge is a completely different experience at night. The lighting design is atmospheric and otherworldly — the same land you walked through this morning feels ten times more immersive after dark. Take time to walk through before your LL window opens. This is when the 'Rising moons!' greeting makes sense.",
+   items:[
+    {type:"notes",name:"Galaxy's Edge After Dark",note:"The bioluminescent lighting, the glowing spires, the neon of the marketplace — this land was specifically designed to be experienced at night. Wander through Black Spire Outpost before your ride window. It's genuinely worth it even if you've already seen everything in daylight."},
+    {type:"ride",priority:1,ll:"single",name:"Star Wars: Rise of the Resistance",height:"40in",note:"⚡ LL Single Pass window: 8:30–9:30pm. The most technically complex ride at Walt Disney World — a multi-stage experience that blurs the line between dark ride and live theater. Allow 30–40 minutes from tap-in to exit. Head straight there at 8:30."},
+  ]},
+
+  // ── END OF NIGHT: FANTASMIC! ─────────────────────────────────────────────
+  {id:"hs-fantasmic",park:"DIS",name:"Fantasmic! — End of Night",
+   note:"Fantasmic is on Sunset Boulevard — about a 7–8 minute walk from Galaxy's Edge. With Rise of the Resistance running 8:30–9:00pm-ish, you'll exit Galaxy's Edge right around when the first Fantasmic show ends. Target the 10:00pm second show — it's always less crowded and you won't be rushing. Head to Sunset Blvd by 9:30 to get a good seat.",
+   items:[
+    {type:"show",priority:1,name:"Fantasmic! Nighttime Spectacular",showtimes:"8:30 PM · 10:00 PM",note:"Water screens, fire, Disney characters, and a full dragon sequence. The 10:00pm show is the move — less crowded, and your Rise of the Resistance LL exit timing lines up perfectly with it."},
+  ]},
+
 ];
 
-const SPELLS_KNOCKTURN = [
-  { location:"Weasley's Wizard Wheezes", spell:"Descendo", effect:"Flushes a plunger down a toilet." },
-  { location:"Chimney Sweep Elf Sign", spell:"Locomotor Chimney Sweep", effect:"Look up for a red chimney sign — the spell makes a little sweep climb the chimney. Easy to miss!" },
-  { location:"Dystal Phaelanges", spell:"Moving Skeleton", effect:"Your body motions are mirrored by the skeleton in the window. One of the most popular!" },
-  { location:"Noggin and Bonce", spell:"Mimblewimble", effect:"Silences the talking heads in the window." },
-  { location:"Tallow and Hemp Toxic Tapers", spell:"Incendio", effect:"Various effects on the bird in the cage." },
-  { location:"Trackleshanks Locksmith", spell:"Alohomora", effect:"Watch out — a gust of wind might give you a scare!" },
+const SM=[
+  {location:"Les Bijoux de Jacqueline (jewelry shop, right of entrance)",spell:"Lumos",effect:"Your wand tip glows; a Niffler inside the window jingles the shiny baubles it's hoarding."},
+  {location:"Monsieur Sanfins (left of entrance)",spell:"Incendio",effect:"Cast the fire-making spell at the shop window to light something inside."},
+  {location:"Les Lumières Maroquinerie",spell:"Titillando",effect:"The Tickling Charm hits a Niffler in the chandelier — it gets tickled and drops its gold coins."},
+  {location:"Les Instruments Larusso",spell:"Locomotor",effect:"Two-part challenge: activate each instrument in sequence to build up the whole band performing together."},
+  {location:"Bar Moonshine (Pumpkin Juice window)",spell:"Revelio",effect:"A Demiguise gradually appears out of thin air, then slowly fades — only its glowing eyes linger."},
+  {location:"Fontaine de la Rue Malabête (near ride entrance)",spell:"Accio",effect:"Something is pulled into the fountain — one of the most visually satisfying spells in all three parks."},
+  {location:"Chez Cosmé",spell:"Lumos Maxima",effect:"A powerful burst of light illuminates dark corners of the store window with magical brilliance."},
+  {location:"Pharmacie Branchiflore (across from wand shop)",spell:"Revelio",effect:"Concealed objects inside the pharmacy window are magically revealed."},
+  {location:"Le Serpent Volant (across from Bar Moonshine)",spell:"Ventus",effect:"A spiraling gust of wind shoots into the display window. Medium-to-hard motion — worth the effort."},
+  {location:"Les Valises Maroquinerie",spell:"Descendo",effect:"All the suitcases spring open. Race to close them one by one before the timer runs out — if you succeed, the middle case pops open to reveal a Niffler."},
+  {location:"Le Gobelet Noir courtyard portraits",spell:"Various (Incendio, Colovaria, Engorgio…)",effect:"The talking portraits have actual conversations with you and respond differently to each spell. Genuinely interactive — not just a visual effect."},
+  {location:"Cosme Acajor Baguettes Magique (wand shop)",spell:"Exclusive Gen 2 spell",effect:"One spell location is only unlocked with a 2nd Generation wand (the $85 ones). Ask inside the shop — it's the most dramatic effect in the land."},
 ];
 
-const HS_ZONES = [
-  { id:"hs-galaxys-edge-am", park:"DIS", name:"Star Wars: Galaxy's Edge", note:"Enter the park, turn left at Echo Lake, and head straight back. Cast Members stay fully in character — call bathrooms 'refreshers,' water fountains 'hydrators.' Say 'Bright suns!' in the morning and 'Rising moons!' in the evening.", items:[
-    { type:"ride", priority:1, ll:"single", name:"Star Wars: Rise of the Resistance", height:"40in", note:"⚡ Buy a Lightning Lane Single Pass the moment the park opens — routinely sells out by mid-morning." },
-    { type:"ride", priority:1, ll:"multi", name:"Millennium Falcon: Smugglers Run", height:"38in", note:"🎮 SECRET 'CHEWIE MODE': Pilots push the stick all the way to one extreme then hit activate; gunners/engineers hold a white button first then press orange activate. Do this before the cast member checks seatbelts. If everyone nails it, Hondo disappears and Chewbacca takes over the whole ride. Ask your cast member — they love helping with this." },
-    { type:"poi", name:"The Dianoga Water Fountain", note:"Near the Batuu Marketplace restrooms. Press the button and a one-eyed Dianoga — the trash compactor creature from A New Hope — pops up from the pipe and stares at you." },
-    { type:"poi", name:"Dok-Ondar's Den of Antiquities", note:"Worth exploring even if you're not shopping: a taxidermied Wampa on the wall, a Rathtar in carbonite, and K-2SO from Rogue One in a droid cage." },
+const EZ=[
+  {id:"eu-celestial",park:"EU",name:"Celestial Park — The Hub",note:"Celestial Park is the heart of the park — a grand open plaza that connects all four portal worlds. Each portal is architecturally designed to hint at the land it leads into. The park's two resident deities, Helios (sun) and Luna (moon), frame the central gardens — at night the whole park syncs together in a light and fire show. Don't skip the closing night show at the lake.",items:[
+    {type:"ride",priority:1,name:"Stardust Racers",height:"48in",note:"The coaster trains have flux-capacitor-style details on the backs — a quiet Back to the Future tribute from the studio that made it. Smooth, fast, and the best views of the entire park."},
   ]},
-  { id:"hs-galaxys-edge-lunch", park:"DIS", name:"Lunch — Galaxy's Edge", items:[
-    { type:"food", name:"Docking Bay 7 Food and Cargo", note:"Best quick-service in the land — the food is genuinely good, not just themed. Mobile order through the Disney app." },
-    { type:"food", name:"Blue or Green Milk (Milk Stand)", note:"Plant-based frozen drinks — blue is coconut-forward, green is citrusy. You have to try at least one." },
+  {id:"eu-ministry",park:"EU",name:"Wizarding World — Ministry of Magic™",note:"You're stepping into 1920s Paris. As you pass through the archway, watch the wall posters shift — on the Muggle side they're normal ads; on the magical side they warn about Grindelwald and advertise frog choir auditions. Pull out a translation app for the French signage — there's a lot going on that English speakers miss.",items:[
+    {type:"ride",priority:1,name:"Harry Potter and the Battle at the Ministry™",height:"40in",note:"⚠️ The most technically ambitious ride in the park — and the most likely to experience downtime. If it's down when you arrive, grab a return time or check back. Worth the wait: it features the Floo Network as a ride mechanism and is unlike anything in the other Wizarding World parks."},
+    {type:"show",priority:1,name:"Le Cirque Arcanus™",note:"A Fantastic Beasts-themed live show with genuine spectacle — aerial performers, magical creatures, and effects that land better than expected. Check the schedule and plan around it."},
+    {type:"food",name:"Le Gobelet Noir",note:"Nicolas Flamel lives above the tavern — look for Deathly Hallows symbols and the Three Brothers puppets tucked into the décor. In the courtyard, don't miss the talking portraits — they respond to spells and have actual conversations with you."},
   ]},
-  { id:"hs-toy-story", park:"DIS", name:"Toy Story Land", note:"The whole land is built as if you've been shrunk to toy size — Andy set this up in his backyard. The scale of everything makes a lot more sense through that lens.", items:[
-    { type:"ride", priority:1, name:"Slinky Dog Dash", height:"38in" },
-    { type:"ride", priority:2, name:"Toy Story Mania!", note:"Keep your arm moving even before targets appear — the gun fires faster the more you pull." },
-    { type:"ride", priority:2, name:"Alien Swirling Saucers", height:"32in" },
+  {id:"eu-nintendo",park:"EU",name:"Super Nintendo World™",note:"Buy a Power-Up Band before you go in (or grab one inside — they're the Mario watch-style wristbands). It turns the entire land into an interactive game: collect coins by punching question blocks, unlock mini-challenges, and work toward battling Bowser Jr. in a secret area only accessible after you've collected three keys hidden around the land.",items:[
+    {type:"ride",priority:1,name:"Mario Kart™: Bowser's Challenge",height:"40in",note:"The AR helmet they give you is your weapon controller — wherever you aim your head is where you shoot. Focus on aiming, not just watching the screen. The team with the most coins and shell hits wins."},
+    {type:"ride",priority:1,name:"Mine-Cart Madness™",height:"40in",note:"Donkey Kong Country-themed coaster with genuine surprises. ⚠️ Still relatively new and prone to downtime — ride it early in the day."},
+    {type:"poi",name:"Power-Up Band — Bowser Jr. Battle",note:"After collecting all three keys from the mini-challenges around the land, you unlock access to Bowser Jr.'s secret lair — a bonus mini-ride experience only available to Power-Up Band holders who've completed the hunt. Worth it."},
+    {type:"notes",name:"Pikmin Hidden Around the Land",note:"Over a dozen Pikmin are tucked around Super Nintendo World — in bushes, corners, rafters. Keep an eye out."},
+    {type:"ride",priority:3,name:"Funky's Fly 'n' Buy"},
   ]},
-  { id:"hs-runaway-railway", park:"DIS", name:"Chinese Theatre — Mickey & Minnie's Runaway Railway", items:[
-    { type:"ride", priority:1, name:"Mickey & Minnie's Runaway Railway", note:"No height requirement. There's a hidden B-plot running the entire ride — keep an eye on Pluto trying to steal a picnic basket. Most guests never notice." },
+  {id:"eu-dark-universe",park:"EU",name:"Dark Universe — Darkmoor Village",note:"The architecture draws deliberately from Universal's black-and-white monster film era. Look at the gravestones — classic Universal Monsters are carved into them. At various times a roaming violinist wanders the streets playing haunting melodies and sharing lore about the village's monsters. Pay attention: they sometimes drop details you won't find anywhere else.",items:[
+    {type:"ride",priority:1,name:"Monsters Unchained: The Frankenstein Experiment",height:"48in",note:"The marquee ride of Dark Universe — a dark ride that escalates quickly. Ride it before the crowds build."},
+    {type:"ride",priority:1,name:"Curse of the Werewolf",height:"40in"},
   ]},
-  { id:"hs-echo-lake", park:"DIS", name:"Echo Lake", items:[
-    { type:"show", priority:3, name:"Beauty and the Beast – Live on Stage", showtimes:"11:00 AM · 1:00 PM · 2:00 PM · 4:00 PM · 5:00 PM" },
-    { type:"show", priority:3, name:"For the First Time in Forever: A Frozen Sing-Along Celebration", showtimes:"9:30 · 10:30 · 11:30 AM · 12:30 · 1:30 · 2:30 · 3:30 · 4:30 · 5:30 · 6:30 PM", note:"Air-conditioned theater. The hosts are genuinely funny — don't write this off." },
-  ]},
-  { id:"hs-indy-startours", park:"DIS", name:"Echo Lake — Indiana Jones & Star Tours", items:[
-    { type:"show", priority:1, ll:"multi", name:"Indiana Jones™ Epic Stunt Spectacular", showtimes:"10:45 AM · 12:00 PM · 1:15 PM · 3:15 PM · 4:30 PM", note:"Book via Lightning Lane Multi Pass. Want to be a volunteer extra? Sit front and center and be loudly enthusiastic when the casting director comes out — wave, stand up, shout. Must be 18+." },
-    { type:"poi", name:"The Rope Well Outside the Theater", note:"Find the well with the sign 'Warning: Do Not Pull Rope' — the 'Not' is crossed out. Pull it. You'll hear someone trapped at the bottom. Pull multiple times for different responses." },
-    { type:"ride", priority:1, ll:"multi", name:"Star Tours – The Adventures Continue", height:"40in", note:"Book via Lightning Lane Multi Pass. Dozens of randomized destination combos — almost no two rides are identical. Worth riding twice." },
-  ]},
-  { id:"hs-sunset", park:"DIS", name:"Sunset Boulevard — Tower of Terror", items:[
-    { type:"ride", priority:1, name:"The Twilight Zone Tower of Terror™", height:"40in", note:"Slow down in the queue — it's a fully themed 1939 Hollywood hotel frozen in time. The building is 199 feet tall: one foot short of the FAA's aircraft warning light requirement, which they deliberately avoided to preserve the atmosphere." },
-  ]},
-  { id:"hs-muppets", park:"DIS", name:"Grand Avenue — Muppet*Vision 3D", items:[
-    { type:"show", priority:3, name:"Muppet*Vision 3D", note:"Almost always a short wait. In the preshow room, find the security desk with a sign reading 'Back in 5 minutes — key is under the mat.' Lift the mat. There's actually a key embedded in the floor." },
-  ]},
-  { id:"hs-galaxys-edge-dinner", park:"DIS", name:"Dinner — Galaxy's Edge", items:[
-    { type:"food", name:"Oga's Cantina", note:"📞 Make a reservation well in advance — walk-ins are nearly impossible. DJ R-3X is the original Star Tours pilot droid repurposed as the cantina DJ. He glitches mid-song and slips into his old flight announcements before snapping out of it." },
-  ]},
-  { id:"hs-fantasmic", park:"DIS", name:"Fantasmic! — End of Night", note:"Arrive 30–45 minutes early — the amphitheater fills fast.", items:[
-    { type:"show", priority:1, name:"Fantasmic! Nighttime Spectacular", showtimes:"8:30 PM · 10:00 PM", note:"Water screens, fire, Disney characters, and a full dragon sequence. If two shows are running, the second is always less crowded." },
+  {id:"eu-berk",park:"EU",name:"How to Train Your Dragon — Isle of Berk",note:"Dragons are everywhere — perched on rooftops, tucked into rocky crags, and roaming the land as live performers. Look for hidden dragon nests in the cliffs. This land is more about immersion than Easter eggs — slow down and look up.",items:[
+    {type:"show",priority:2,name:"The Untrainable Dragon",note:"A stage production with impressive live dragon effects. Worth timing your visit around it."},
+    {type:"water",priority:3,name:"Fyre Drill",note:"Viking-themed water battle ride. You will get wet."},
+    {type:"ride",priority:3,name:"Dragon Racer's Rally",height:"48in"},
+    {type:"ride",priority:5,name:"Hiccup's Wing Gliders",height:"40in",note:"⚠️ The most unreliable attraction in the park during its first year — check wait times before committing to the queue."},
   ]},
 ];
 
-const SPELLS_MINISTRY = [
-  { location:"Les Bijoux de Jacqueline (jewelry shop, right of entrance)", spell:"Lumos", effect:"Your wand tip glows; a Niffler inside the window jingles the shiny baubles it's hoarding." },
-  { location:"Monsieur Sanfins (left of entrance)", spell:"Incendio", effect:"Cast the fire-making spell at the shop window to light something inside." },
-  { location:"Les Lumières Maroquinerie", spell:"Titillando", effect:"The Tickling Charm hits a Niffler in the chandelier — it gets tickled and drops its gold coins." },
-  { location:"Les Instruments Larusso", spell:"Locomotor", effect:"Two-part challenge: activate each instrument in sequence to build up the whole band performing together." },
-  { location:"Bar Moonshine (Pumpkin Juice window)", spell:"Revelio", effect:"A Demiguise gradually appears out of thin air, then slowly fades — only its glowing eyes linger." },
-  { location:"Fontaine de la Rue Malabête (near ride entrance)", spell:"Accio", effect:"Something is pulled into the fountain — one of the most visually satisfying spells in all three parks." },
-  { location:"Chez Cosmé", spell:"Lumos Maxima", effect:"A powerful burst of light illuminates dark corners of the store window with magical brilliance." },
-  { location:"Pharmacie Branchiflore (across from wand shop)", spell:"Revelio", effect:"Concealed objects inside the pharmacy window are magically revealed." },
-  { location:"Le Serpent Volant (across from Bar Moonshine)", spell:"Ventus", effect:"A spiraling gust of wind shoots into the display window. Medium-to-hard motion — worth the effort." },
-  { location:"Les Valises Maroquinerie", spell:"Descendo", effect:"All the suitcases spring open. Race to close them one by one before the timer runs out — if you succeed, the middle case pops open to reveal a Niffler." },
-  { location:"Le Gobelet Noir courtyard portraits", spell:"Various (Incendio, Colovaria, Engorgio…)", effect:"The talking portraits have actual conversations with you and respond differently to each spell. Genuinely interactive — not just a visual effect." },
-  { location:"Cosme Acajor Baguettes Magique (wand shop)", spell:"Exclusive Gen 2 spell", effect:"One spell location is only unlocked with a 2nd Generation wand (the $85 ones). Ask inside the shop — it's the most dramatic effect in the land." },
-];
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
 
-const EU_ZONES = [
-  { id:"eu-celestial", park:"EU", name:"Celestial Park — The Hub", note:"Celestial Park is the heart of the park — a grand open plaza that connects all four portal worlds. Each portal is architecturally designed to hint at the land it leads into. The park's two resident deities, Helios (sun) and Luna (moon), frame the central gardens — at night the whole park syncs together in a light and fire show. Don't skip the closing night show at the lake.", items:[
-    { type:"ride", priority:1, name:"Stardust Racers", height:"48in", note:"The coaster trains have flux-capacitor-style details on the backs — a quiet Back to the Future tribute from the studio that made it. Smooth, fast, and the best views of the entire park." },
-  ]},
-  { id:"eu-ministry", park:"EU", name:"Wizarding World — Ministry of Magic™", note:"You're stepping into 1920s Paris. As you pass through the archway, watch the wall posters shift — on the Muggle side they're normal ads; on the magical side they warn about Grindelwald and advertise frog choir auditions. Pull out a translation app for the French signage — there's a lot going on that English speakers miss.", items:[
-    { type:"ride", priority:1, name:"Harry Potter and the Battle at the Ministry™", height:"40in", note:"⚠️ The most technically ambitious ride in the park — and the most likely to experience downtime. If it's down when you arrive, grab a return time or check back. Worth the wait: it features the Floo Network as a ride mechanism and is unlike anything in the other Wizarding World parks." },
-    { type:"show", priority:1, name:"Le Cirque Arcanus™", note:"A Fantastic Beasts-themed live show with genuine spectacle — aerial performers, magical creatures, and effects that land better than expected. Check the schedule and plan around it." },
-    { type:"food", name:"Le Gobelet Noir", note:"Nicolas Flamel lives above the tavern — look for Deathly Hallows symbols and the Three Brothers puppets tucked into the décor. In the courtyard, don't miss the talking portraits — they respond to spells and have actual conversations with you." },
-  ]},
-  { id:"eu-nintendo", park:"EU", name:"Super Nintendo World™", note:"Buy a Power-Up Band before you go in (or grab one inside — they're the Mario watch-style wristbands). It turns the entire land into an interactive game: collect coins by punching question blocks, unlock mini-challenges, and work toward battling Bowser Jr. in a secret area only accessible after you've collected three keys hidden around the land.", items:[
-    { type:"ride", priority:1, name:"Mario Kart™: Bowser's Challenge", height:"40in", note:"The AR helmet they give you is your weapon controller — wherever you aim your head is where you shoot. Focus on aiming, not just watching the screen. The team with the most coins and shell hits wins." },
-    { type:"ride", priority:1, name:"Mine-Cart Madness™", height:"40in", note:"Donkey Kong Country-themed coaster with genuine surprises. ⚠️ Still relatively new and prone to downtime — ride it early in the day." },
-    { type:"poi", name:"Power-Up Band — Bowser Jr. Battle", note:"After collecting all three keys from the mini-challenges around the land, you unlock access to Bowser Jr.'s secret lair — a bonus mini-ride experience only available to Power-Up Band holders who've completed the hunt. Worth it." },
-    { type:"notes", name:"Pikmin Hidden Around the Land", note:"Over a dozen Pikmin are tucked around Super Nintendo World — in bushes, corners, rafters. Keep an eye out." },
-    { type:"ride", priority:3, name:"Funky's Fly 'n' Buy" },
-  ]},
-  { id:"eu-dark-universe", park:"EU", name:"Dark Universe — Darkmoor Village", note:"The architecture draws deliberately from Universal's black-and-white monster film era. Look at the gravestones — classic Universal Monsters are carved into them. At various times a roaming violinist wanders the streets playing haunting melodies and sharing lore about the village's monsters. Pay attention: they sometimes drop details you won't find anywhere else.", items:[
-    { type:"ride", priority:1, name:"Monsters Unchained: The Frankenstein Experiment", height:"48in", note:"The marquee ride of Dark Universe — a dark ride that escalates quickly. Ride it before the crowds build." },
-    { type:"ride", priority:1, name:"Curse of the Werewolf", height:"40in" },
-  ]},
-  { id:"eu-berk", park:"EU", name:"How to Train Your Dragon — Isle of Berk", note:"Dragons are everywhere — perched on rooftops, tucked into rocky crags, and roaming the land as live performers. Look for hidden dragon nests in the cliffs. This land is more about immersion than Easter eggs — slow down and look up.", items:[
-    { type:"show", priority:2, name:"The Untrainable Dragon", note:"A stage production with impressive live dragon effects. Worth timing your visit around it." },
-    { type:"water", priority:3, name:"Fyre Drill", note:"Viking-themed water battle ride. You will get wet." },
-    { type:"ride", priority:3, name:"Dragon Racer's Rally", height:"48in" },
-    { type:"ride", priority:5, name:"Hiccup's Wing Gliders", height:"40in", note:"⚠️ The most unreliable attraction in the park during its first year — check wait times before committing to the queue." },
-  ]},
-];
-
-// ── RENDERING ─────────────────────────────────────────────────────────────────
-
-function priorityClass(p) {
-  if (!p) return 'priority-other';
-  return 'priority-' + p;
+function rA(item,pt){
+  const p=item.priority,pc=p&&PC[pt][p];
+  let meta=`<span class="tag ${TT[item.type]||''}">${TL[item.type]||item.type}</span>`;
+  if(pc)meta+=`<span class="priority-pill ${pc.c}">${pc.l}</span>`;
+  if(item.ll==="single")meta+=`<span class="tag type-ll-single">⚡ LL Single Pass</span>`;
+  if(item.ll==="multi")meta+=`<span class="tag type-ll-multi">🎟 LL Multi Pass</span>`;
+  if(item.height)meta+=`<span class="tag height">↑ ${esc(item.height)} min height</span>`;
+  if(item.showtimes)meta+=`<span class="tag showtime">🕐 ${esc(item.showtimes)}</span>`;
+  const note=item.note?`<div class="attr-note${item.ll?" ll-note":""}">${esc(item.note)}</div>`:"";
+  return `<div class="attraction priority-${p||"other"}" data-priority="${p||0}"><div class="attr-rank">${p||"—"}</div><div class="attr-body"><div class="attr-name">${esc(item.name)}</div><div class="attr-meta">${meta}</div>${note}</div></div>`;
 }
 
-function escHtml(str) {
-  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+function rZ(z,pt){
+  const bm={IoA:"ioa",US:"us",both:"ioa",DIS:"dis",EU:"eu",CW:"cw"};
+  const lm={IoA:"IoA",US:"US",both:"IoA+US",CW:"CityWalk",DIS:"HS",EU:"EU"};
+  const note=z.note?`<div class="zone-note">${esc(z.note)}</div>`:"";
+  return `<div class="zone" id="zone-${z.id}"><div class="zone-header" onclick="tZ('${z.id}')"><span class="zone-badge ${bm[z.park]||"cw"}">${lm[z.park]||z.park}</span><span class="zone-name">${esc(z.name)}</span><span class="zone-toggle open" id="zt-${z.id}">▶</span></div><div class="zone-body" id="zb-${z.id}">${note}${z.items.map(i=>rA(i,pt)).join("")}</div></div>`;
 }
 
-function renderAttraction(item, parkType) {
-  const typeLabel = TYPE_LABELS[item.type] || item.type;
-  const typeTag   = TYPE_TAGS[item.type] || '';
-  const p = item.priority;
-  const cfg = PRIORITY_CONFIG[parkType];
-  const pc = p && cfg[p];
-  const noteClass = item.ll ? 'attr-note ll-note' : 'attr-note';
-
-  let meta = `<span class="tag ${typeTag}">${typeLabel}</span>`;
-  if (pc) meta += `<span class="priority-pill ${pc.cls}">${pc.label}</span>`;
-  if (item.ll === 'single') meta += `<span class="tag type-ll-single">⚡ LL Single Pass</span>`;
-  if (item.ll === 'multi')  meta += `<span class="tag type-ll-multi">🎟 LL Multi Pass</span>`;
-  if (item.height && item.height !== 'none') meta += `<span class="tag height">↑ ${escHtml(item.height)} min height</span>`;
-  if (item.showtimes) meta += `<span class="tag showtime">🕐 ${escHtml(item.showtimes)}</span>`;
-
-  const note = item.note ? `<div class="${noteClass}">${escHtml(item.note)}</div>` : '';
-
-  return `
-    <div class="attraction ${priorityClass(p)}" data-priority="${p || 0}">
-      <div class="attr-rank">${p || '—'}</div>
-      <div class="attr-body">
-        <div class="attr-name">${escHtml(item.name)}</div>
-        <div class="attr-meta">${meta}</div>
-        ${note}
-      </div>
-    </div>`;
+function rS(spells,title,uid){
+  const id="sp-"+uid;
+  return `<div class="spells-block"><button class="spells-toggle" onclick="tS('${id}',this)"><span>✦ Wand Spells: ${esc(title)}</span><span>▼ Show all ${spells.length} spells</span></button><div class="spell-rows" id="${id}">${spells.map(s=>`<div class="spell-row"><div class="spell-location">${esc(s.location)}</div><span class="spell-name">${esc(s.spell)}</span> — ${esc(s.effect)}</div>`).join("")}</div></div>`;
 }
 
-function renderZone(zone, parkType, noteClass) {
-  const badgeMap = { IoA:'ioa', US:'us', both:'ioa', DIS:'dis', EU:'eu', CW:'cw' };
-  const labelMap = { IoA:'IoA', US:'US', both:'IoA + US', CW:'CityWalk', DIS:'HS', EU:'EU' };
-  const badge = badgeMap[zone.park] || 'cw';
-  const label = labelMap[zone.park] || zone.park;
-  const zoneNote = zone.note ? `<div class="zone-note ${noteClass}">${escHtml(zone.note)}</div>` : '';
-  const items = zone.items.map(i => renderAttraction(i, parkType)).join('');
-
-  return `
-    <div class="zone" id="zone-${zone.id}">
-      <div class="zone-header" onclick="toggleZone('zone-${zone.id}')">
-        <span class="zone-badge ${badge}">${label}</span>
-        <span class="zone-name">${escHtml(zone.name)}</span>
-        <span class="zone-toggle open" id="toggle-${zone.id}">▶</span>
-      </div>
-      <div class="zone-body" id="body-${zone.id}">
-        ${zoneNote}
-        ${items}
-      </div>
-    </div>`;
+function buildAll(){
+  document.getElementById("universal-zones-ioa").innerHTML=UZ.filter(z=>z.park==="IoA").map(z=>rZ(z,"universal")).join("");
+  document.getElementById("universal-zones-bridge").innerHTML=UZ.filter(z=>z.park==="both").map(z=>rZ(z,"universal")).join("");
+  document.getElementById("universal-zones-us").innerHTML=UZ.filter(z=>z.park==="US").map(z=>rZ(z,"universal")).join("");
+  document.getElementById("universal-zones-cw").innerHTML=UZ.filter(z=>z.park==="CW").map(z=>rZ(z,"universal")).join("");
+  document.getElementById("universal-spells-hogsmeade").innerHTML=rS(SH,"Hogsmeade (IoA)","hogsmeade");
+  document.getElementById("universal-spells-diagon").innerHTML=rS(SD,"Diagon Alley (US)","diagon");
+  document.getElementById("universal-spells-knockturn").innerHTML=rS(SK,"Knockturn Alley (US)","knockturn");
+  document.getElementById("disney-zones").innerHTML=HZ.map(z=>rZ(z,"disney")).join("");
+  let eh="";EZ.forEach(z=>{eh+=rZ(z,"epic");if(z.id==="eu-ministry")eh+=rS(SM,"Ministry of Magic — Place Cachée","ministry");});
+  document.getElementById("epic-zones").innerHTML=eh;
 }
 
-function renderSpells(spells, title, containerId) {
-  const id = 'spells-' + containerId;
-  const rows = spells.map(s => `
-    <div class="spell-row">
-      <div class="spell-location">${escHtml(s.location)}</div>
-      <span class="spell-name">${escHtml(s.spell)}</span> — ${escHtml(s.effect)}
-    </div>`).join('');
-
-  return `
-    <div class="spells-block">
-      <button class="spells-toggle" onclick="toggleSpells('${id}', this)">
-        <span>✦ Wand Spells: ${escHtml(title)}</span>
-        <span>▼ Show all ${spells.length} spells</span>
-      </button>
-      <div class="spell-rows" id="${id}">${rows}</div>
-    </div>`;
-}
-
-function buildUniversal() {
-  const ioa    = UNIVERSAL_ZONES.filter(z => z.park === 'IoA');
-  const bridge = UNIVERSAL_ZONES.filter(z => z.park === 'both');
-  const us     = UNIVERSAL_ZONES.filter(z => z.park === 'US');
-  const cw     = UNIVERSAL_ZONES.filter(z => z.park === 'CW');
-
-  document.getElementById('universal-zones-ioa').innerHTML    = ioa.map(z => renderZone(z,'universal','')).join('');
-  document.getElementById('universal-zones-bridge').innerHTML = bridge.map(z => renderZone(z,'universal','')).join('');
-  document.getElementById('universal-zones-us').innerHTML     = us.map(z => renderZone(z,'universal','')).join('');
-  document.getElementById('universal-zones-cw').innerHTML     = cw.map(z => renderZone(z,'universal','')).join('');
-  document.getElementById('universal-spells-hogsmeade').innerHTML = renderSpells(SPELLS_HOGSMEADE, 'Hogsmeade (IoA)', 'hogsmeade');
-  document.getElementById('universal-spells-diagon').innerHTML    = renderSpells(SPELLS_DIAGON, 'Diagon Alley (US)', 'diagon');
-  document.getElementById('universal-spells-knockturn').innerHTML = renderSpells(SPELLS_KNOCKTURN, 'Knockturn Alley (US)', 'knockturn');
-}
-
-function buildDisney() {
-  document.getElementById('disney-zones').innerHTML = HS_ZONES.map(z => renderZone(z,'disney','disney-note')).join('');
-}
-
-function buildEpic() {
-  let html = '';
-  EU_ZONES.forEach(z => {
-    html += renderZone(z, 'epic', 'epic-note');
-    if (z.id === 'eu-ministry') {
-      html += renderSpells(SPELLS_MINISTRY, 'Ministry of Magic — Place Cachée', 'ministry');
-    }
+function toggleDay(day){
+  const acc=document.getElementById("acc-"+day);
+  const isOpen=acc.classList.contains("open");
+  ["universal","disney","epic"].forEach(d=>{
+    document.getElementById("acc-"+d).classList.remove("open");
+    document.getElementById("btn-"+d).textContent="Expand ▼";
   });
-  document.getElementById('epic-zones').innerHTML = html;
+  if(!isOpen){
+    acc.classList.add("open");
+    document.getElementById("btn-"+day).textContent="Collapse ▲";
+    setTimeout(()=>acc.scrollIntoView({behavior:"smooth",block:"start"}),30);
+  }
 }
 
-// ── INTERACTION ───────────────────────────────────────────────────────────────
-
-function togglePanel(id) {
-  const panels = document.querySelectorAll('.panel');
-  panels.forEach(p => {
-    if (p.id === id) {
-      const opening = !p.classList.contains('open');
-      p.classList.toggle('open', opening);
-      const chevron = document.getElementById('chevron-' + id);
-      if (chevron) chevron.textContent = opening ? 'Close ▲' : 'View Plan ▼';
-    } else {
-      p.classList.remove('open');
-      const chevron = document.getElementById('chevron-' + p.id);
-      if (chevron) chevron.textContent = 'View Plan ▼';
-    }
-  });
+function tZ(id){
+  const body=document.getElementById("zb-"+id),toggle=document.getElementById("zt-"+id);
+  const hidden=body.classList.toggle("hidden");
+  toggle.classList.toggle("open",!hidden);
 }
 
-function toggleZone(zoneId) {
-  const body   = document.getElementById('body-' + zoneId.replace('zone-',''));
-  const toggle = document.getElementById('toggle-' + zoneId.replace('zone-',''));
-  const hidden = body.classList.toggle('hidden');
-  toggle.classList.toggle('open', !hidden);
+function tS(id,btn){
+  const open=document.getElementById(id).classList.toggle("open");
+  btn.querySelector("span:last-child").textContent=open?"▲ Hide":"▼ Show all "+document.getElementById(id).querySelectorAll(".spell-row").length+" spells";
 }
 
-function toggleSpells(id, btn) {
-  const rows = document.getElementById(id);
-  const open = rows.classList.toggle('open');
-  const count = rows.querySelectorAll('.spell-row').length;
-  btn.querySelector('span:last-child').textContent = open ? '▲ Hide' : '▼ Show all ' + count + ' spells';
+function setFilter(btn,bodyId,mode){
+  const body=document.getElementById(bodyId);
+  body.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  body.querySelectorAll(".attraction").forEach(el=>{el.style.display=(mode==="must"&&parseInt(el.dataset.priority)!==1)?"none":"";});
+  body.querySelectorAll(".zone").forEach(z=>{const zb=z.querySelector(".zone-body");if(!zb)return;z.style.display=[...zb.querySelectorAll(".attraction")].some(a=>a.style.display!=="none")?"":"none";});
+  body.querySelectorAll(".spells-block").forEach(sb=>{sb.style.display=mode==="must"?"none":"";});
 }
 
-function setFilter(btn, panelId, mode) {
-  const view = document.getElementById(panelId);
-  view.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-
-  view.querySelectorAll('.attraction').forEach(el => {
-    const p = parseInt(el.dataset.priority);
-    if (mode === 'must') {
-      el.style.display = (p === 1) ? '' : 'none';
-    } else {
-      el.style.display = '';
-    }
-  });
-
-  // Hide zones that have no visible attractions
-  view.querySelectorAll('.zone').forEach(zone => {
-    const body = zone.querySelector('.zone-body');
-    if (!body) return;
-    const visible = [...body.querySelectorAll('.attraction')].some(a => a.style.display !== 'none');
-    zone.style.display = visible ? '' : 'none';
-  });
-
-  // Hide/show spell accordions when filtering
-  view.querySelectorAll('.spells-block').forEach(sb => {
-    sb.style.display = mode === 'must' ? 'none' : '';
-  });
-}
-
-// ── INIT ──────────────────────────────────────────────────────────────────────
-buildUniversal();
-buildDisney();
-buildEpic();
+buildAll();
 </script>
-
 </body>
+</html>
